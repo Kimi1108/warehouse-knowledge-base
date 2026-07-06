@@ -1480,6 +1480,11 @@ function closeSearch() {
   document.getElementById('searchOverlay').classList.remove('active');
 }
 
+function handleSearchClick(el) {
+  closeSearch();
+  openSection(el.dataset.section, el.dataset.title, el.dataset.icon);
+}
+
 function performSearch() {
   var q = document.getElementById('searchOverlayInput').value.toLowerCase().trim();
   var container = document.getElementById('searchResultsList');
@@ -1502,7 +1507,7 @@ function performSearch() {
     container.innerHTML = '<div class="no-results">未找到与 "' + q + '" 相关的内容</div>';
   } else {
     container.innerHTML = results.slice(0, 15).map(function(r) {
-      return '<div class="search-result-item" onclick="closeSearch();openSection(\'' + r.id + '\',\'' + r.title + '\',\'' + r.icon + '\')">' +
+      return '<div class="search-result-item" data-section="' + r.id + '" data-title="' + r.title + '" data-icon="' + r.icon + '" onclick="handleSearchClick(this)">' +
         '<h4>' + r.icon + ' ' + r.title + '</h4>' +
         '<p>' + r.excerpt + '</p></div>';
     }).join('');
