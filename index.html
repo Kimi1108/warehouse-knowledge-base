@@ -1502,7 +1502,7 @@ function performSearch() {
     container.innerHTML = '<div class="no-results">未找到与 "' + q + '" 相关的内容</div>';
   } else {
     container.innerHTML = results.slice(0, 15).map(function(r) {
-      return '<div class="search-result-item" onclick="closeSearch();openSection('' + r.id + '','' + r.title + '','' + r.icon + '')">' +
+      return '<div class="search-result-item" onclick="closeSearch();openSection(\'' + r.id + '\',\'' + r.title + '\',\'' + r.icon + '\')">' +
         '<h4>' + r.icon + ' ' + r.title + '</h4>' +
         '<p>' + r.excerpt + '</p></div>';
     }).join('');
