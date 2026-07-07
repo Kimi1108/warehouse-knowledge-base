@@ -3,209 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>仓储管理与自动化 · 专业知识库</title>
+<title>仓库管理与仓储自动化 · 知识库</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif; background: #f5f6fa; color: #2d3436; line-height: 1.7; }
-.topbar { position: sticky; top: 0; z-index: 1000; background: linear-gradient(135deg, #0c0c30, #1a1a4e); color: #fff; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 56px; box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
-.topbar .logo-area { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-.topbar .logo-area span { font-size: 20px; font-weight: 700; }
-.topbar .search-area { flex: 1; max-width: 400px; margin: 0 24px; }
-.topbar .search-area input { width: 100%; padding: 8px 16px 8px 36px; border: none; border-radius: 20px; font-size: 14px; background: rgba(255,255,255,0.15); color: #fff; outline: none; transition: background 0.3s; }
-.topbar .search-area input:focus { background: rgba(255,255,255,0.25); }
-.topbar .search-area input::placeholder { color: rgba(255,255,255,0.5); }
-.topbar .top-actions { display: flex; gap: 12px; }
-.topbar .top-actions a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; }
-.topbar .top-actions a:hover { background: rgba(255,255,255,0.1); color: #fff; }
-.home-view { padding: 0; }
-.hero { background: linear-gradient(135deg, #0c0c30 0%, #1a1a4e 40%, #2d1b69 100%); color: #fff; padding: 60px 40px; text-align: center; position: relative; overflow: hidden; }
-.hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-.hero h1 { font-size: 36px; margin-bottom: 12px; position: relative; }
-.hero p { font-size: 16px; opacity: 0.8; max-width: 700px; margin: 0 auto 24px; position: relative; }
-.hero .stats-row { display: flex; justify-content: center; gap: 40px; margin: 32px 0; position: relative; flex-wrap: wrap; }
-.hero .stat-item { text-align: center; }
-.hero .stat-item .num { font-size: 36px; font-weight: 800; background: linear-gradient(135deg, #a29bfe, #6c5ce7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.hero .stat-item .lbl { font-size: 13px; opacity: 0.6; }
-.cards-container { max-width: 1300px; margin: -40px auto 40px; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 20px; position: relative; z-index: 10; }
-.card { background: #fff; border-radius: 16px; padding: 28px; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
-.card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
-.card .card-icon { font-size: 40px; margin-bottom: 12px; }
-.card h3 { font-size: 19px; margin-bottom: 8px; color: #2d3436; }
-.card p { font-size: 14px; color: #636e72; line-height: 1.6; }
-.detail-panel { display: none; max-width: 1100px; margin: 0 auto; padding: 24px; }
-.detail-panel.active { display: block; }
-.detail-header { margin-bottom: 24px; }
-.detail-header h1 { font-size: 26px; color: #1a1a4e; }
-.btn-back { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: #f0f0f5; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; color: #636e72; margin-bottom: 16px; transition: all 0.2s; }
-.btn-back:hover { background: #e0e0eb; color: #2d3436; }
-.detail-body h1 { font-size: 28px; color: #0c0c30; margin-bottom: 16px; border-bottom: 3px solid #6c5ce7; padding-bottom: 10px; }
-.detail-body h2 { font-size: 22px; color: #1a1a4e; margin: 36px 0 12px; }
-.detail-body h3 { font-size: 17px; color: #444; margin: 24px 0 8px; }
-.detail-body table { width: 100%; border-collapse: collapse; margin: 16px 0; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); display: block; overflow-x: auto; }
-.detail-body th { background: #1a1a4e; color: #fff; padding: 10px 14px; text-align: left; font-size: 13px; font-weight: 600; white-space: nowrap; }
-.detail-body td { padding: 10px 14px; border-bottom: 1px solid #eef0f3; font-size: 14px; }
-.detail-body tr:last-child td { border-bottom: none; }
-.detail-body tr:hover td { background: #f8f9ff; }
-.detail-body p { margin: 10px 0; font-size: 15px; }
-.detail-body li { margin: 4px 0 4px 20px; font-size: 14px; }
-.detail-body code { background: #f0f0f5; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #6c5ce7; }
-.detail-body pre { background: #1a1a2e; color: #e0e0e0; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; font-size: 13px; }
-.detail-body pre code { background: none; color: inherit; padding: 0; }
-.detail-body strong { color: #6c5ce7; }
-.search-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; }
-.search-overlay.active { display: flex; }
-.search-results { background: #fff; width: 90%; max-width: 600px; max-height: 70vh; border-radius: 16px; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
-.search-results-header { padding: 20px; border-bottom: 1px solid #eee; display: flex; gap: 12px; }
-.search-results-header input { flex: 1; padding: 10px 14px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; outline: none; }
-.search-results-header input:focus { border-color: #6c5ce7; }
-.search-results-header button { padding: 10px 20px; background: #6c5ce7; color: #fff; border: none; border-radius: 8px; cursor: pointer; }
-.search-result-item { padding: 14px 20px; border-bottom: 1px solid #f0f0f0; cursor: pointer; transition: background 0.2s; }
-.search-result-item:hover { background: #f8f9ff; }
-.search-result-item h4 { font-size: 14px; color: #1a1a4e; }
-.search-result-item p { font-size: 12px; color: #888; margin-top: 2px; }
-.no-results { padding: 40px; text-align: center; color: #888; }
-.flow-step { padding: 14px 20px; background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: #fff; border-radius: 10px; font-size: 14px; font-weight: 600; text-align: center; }
-.arch-diagram { margin: 24px 0; }
-.arch-top { background: #dfe6e9; color: #636e72; border: 2px dashed #b2bec3; }
-.arch-mid { background: #6c5ce7; color: #fff; }
-.arch-bot { background: #e17055; color: #fff; }
-.arch-arrow-down { text-align: center; font-size: 20px; color: #b2bec3; margin: 4px 0; }
-.footer { text-align: center; padding: 40px 20px; color: #b2bec3; font-size: 13px; }
-.footer a { color: #6c5ce7; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-.card { animation: fadeIn 0.5s ease both; }
-.card:nth-child(1) { animation-delay: 0.05s; }
-.card:nth-child(2) { animation-delay: 0.10s; }
-.card:nth-child(3) { animation-delay: 0.15s; }
-.card:nth-child(4) { animation-delay: 0.20s; }
-.card:nth-child(5) { animation-delay: 0.25s; }
-.card:nth-child(6) { animation-delay: 0.30s; }
-.card:nth-child(7) { animation-delay: 0.35s; }
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f0f0f0; }
-::-webkit-scrollbar-thumb { background: #b2bec3; border-radius: 3px; }
-@media (max-width: 768px) {
-  .hero { padding: 40px 20px; }
-  .hero h1 { font-size: 24px; }
-  .hero .stats-row { gap: 20px; }
-  .hero .stat-item .num { font-size: 24px; }
-  .cards-container { grid-template-columns: 1fr; padding: 0 16px; }
-  .detail-panel { padding: 16px; }
-  .topbar .search-area { display: none; }
-}
+* {{ margin: 0; padding: 0; box-sizing: border-box; }}
+body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif; background: #f0f2f5; color: #1a1a2e; line-height: 1.7; }}
+.container {{ display: flex; min-height: 100vh; }}
+.sidebar {{ width: 260px; background: linear-gradient(180deg, #0f0c29, #302b63, #24243e); color: #fff; padding: 24px 0; position: fixed; height: 100vh; overflow-y: auto; z-index: 100; }}
+.sidebar .logo {{ padding: 0 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 16px; }}
+.sidebar .logo h2 {{ font-size: 18px; font-weight: 700; }}
+.sidebar .logo p {{ font-size: 12px; opacity: 0.6; margin-top: 4px; }}
+.sidebar nav ul {{ list-style: none; padding: 0 12px; }}
+.sidebar nav ul li {{ margin-bottom: 2px; }}
+.sidebar nav ul li a {{ display: block; padding: 10px 12px; color: rgba(255,255,255,0.75); text-decoration: none; border-radius: 8px; font-size: 14px; transition: all 0.2s; }}
+.sidebar nav ul li a:hover, .sidebar nav ul li a.active {{ background: rgba(255,255,255,0.12); color: #fff; }}
+.main {{ margin-left: 260px; flex: 1; padding: 32px 40px; max-width: 1100px; }}
+.content-section {{ display: none; }}
+.content-section.active {{ display: block; }}
+
+h1 {{ font-size: 28px; color: #0f0c29; margin-bottom: 16px; border-bottom: 3px solid #302b63; padding-bottom: 10px; }}
+h2 {{ font-size: 22px; color: #302b63; margin: 32px 0 12px; }}
+h3 {{ font-size: 17px; color: #444; margin: 24px 0 8px; }}
+
+table {{ width: 100%; border-collapse: collapse; margin: 16px 0; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }}
+th {{ background: #302b63; color: #fff; padding: 10px 14px; text-align: left; font-size: 13px; font-weight: 600; }}
+td {{ padding: 10px 14px; border-bottom: 1px solid #eef0f3; font-size: 14px; }}
+tr:last-child td {{ border-bottom: none; }}
+tr:hover td {{ background: #f8f9ff; }}
+
+p {{ margin: 8px 0; font-size: 15px; }}
+li {{ margin: 4px 0 4px 20px; font-size: 14px; }}
+
+code {{ background: #f0f0f5; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #302b63; }}
+pre {{ background: #1a1a2e; color: #e0e0e0; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; font-size: 13px; }}
+pre code {{ background: none; color: inherit; padding: 0; }}
+
+strong {{ color: #302b63; }}
+
+@media (max-width: 768px) {{
+  .sidebar {{ width: 100%; height: auto; position: relative; }}
+  .main {{ margin-left: 0; padding: 20px; }}
+  .container {{ flex-direction: column; }}
+}}
 </style>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="logo-area" onclick="goHome()">
-    <span>📦 仓储知识库</span>
-  </div>
-  <div class="search-area">
-    <input type="text" placeholder="🔍 搜索知识点..." id="searchInput" onkeydown="if(event.key==='Enter')openSearch()">
-  </div>
-  <div class="top-actions">
-    <a href="#" onclick="openSearch()">🔍 搜索</a>
-    <a href="https://github.com/Kimi1108/warehouse-knowledge-base" target="_blank">📦 GitHub</a>
-  </div>
-</div>
-
-<div id="home-view" class="home-view active">
-  <div class="hero">
-    <h1>📦 仓库管理与仓储自动化</h1>
-    <p>一站式专业知识库 — 覆盖自动化技术、WMS选型、电子料管理、安全规范、体系标准及全球汽车客户审核</p>
-    <div class="stats-row">
-      <div class="stat-item"><div class="num">8</div><div class="lbl">知识板块</div></div>
-      <div class="stat-item"><div class="num">7</div><div class="lbl">专业文档</div></div>
-      <div class="stat-item"><div class="num">550亿+</div><div class="lbl">2026年市场规模</div></div>
-      <div class="stat-item"><div class="num">38万+</div><div class="lbl">预计AMR出货</div></div>
+<div class="container">
+  <aside class="sidebar">
+    <div class="logo">
+      <h2>📦 仓储知识库</h2>
+      <p>Warehouse Knowledge Base</p>
     </div>
-  </div>
-
-  <div class="cards-container">
-    
-    <div class="card" onclick="openSection('automation', '仓储自动化', '🤖')" style="border-top: 4px solid #e17055">
-      <div class="card-icon">🤖</div>
-      <h3>仓储自动化</h3>
-      <p>AGV/AMR/复合机器人/ASRS/数字孪生/厂商速查</p>
-    </div>
-    <div class="card" onclick="openSection('wms', 'WMS选型', '💻')" style="border-top: 4px solid #0984e3">
-      <div class="card-icon">💻</div>
-      <h3>WMS选型</h3>
-      <p>10款主流产品对比、集成架构、实施方法、ROI分析</p>
-    </div>
-    <div class="card" onclick="openSection('best-practices', '最佳实践', '📋')" style="border-top: 4px solid #00b894">
-      <div class="card-icon">📋</div>
-      <h3>最佳实践</h3>
-      <p>Lean/5S/6S、仓库布局设计、拣选策略、KPI仪表盘</p>
-    </div>
-    <div class="card" onclick="openSection('industry', '行业案例', '🏭')" style="border-top: 4px solid #fdcb6e">
-      <div class="card-icon">🏭</div>
-      <h3>行业案例</h3>
-      <p>电商/制造/医药/冷链/新能源/化工仓储方案</p>
-    </div>
-    <div class="card" onclick="openSection('electronic-safety', '电子料与安全', '🔌')" style="border-top: 4px solid #00cec9">
-      <div class="card-icon">🔌</div>
-      <h3>电子料与安全</h3>
-      <p>MSD湿敏管理/ESD静电防护/危化品仓储安全</p>
-    </div>
-    <div class="card" onclick="openSection('standards', '体系标准', '📐')" style="border-top: 4px solid #e84393">
-      <div class="card-icon">📐</div>
-      <h3>体系标准</h3>
-      <p>IATF 16949/VDA 6.3/ISO 45001/ISO 27001 仓储审核</p>
-    </div>
-    <div class="card" onclick="openSection('oem', '客户审核', '🚗')" style="border-top: 4px solid #636e72">
-      <div class="card-icon">🚗</div>
-      <h3>客户审核</h3>
-      <p>奔驰/宝马/大众/丰田/现代 供应商物流审核要求</p>
-    </div>
-  </div>
-
-  <div class="section-illustration" style="max-width:1100px; margin:0 auto 40px; padding:0 24px;">
-    <h2 style="text-align:center; margin-bottom:20px; color:#1a1a4e;">📐 智慧仓储三层架构</h2>
-    <div class="arch-diagram" style="text-align:center;">
-      <div class="arch-top" style="font-size:18px; padding:16px 20px; border-radius:10px;">🎯 感知层</div>
-      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin:10px 0;">
-        <span class="flow-step" style="background:#b2bec3; font-size:12px; padding:8px 14px;">RFID</span>
-        <span class="flow-step" style="background:#b2bec3; font-size:12px; padding:8px 14px;">条码/二维码</span>
-        <span class="flow-step" style="background:#b2bec3; font-size:12px; padding:8px 14px;">温湿度传感器</span>
-        <span class="flow-step" style="background:#b2bec3; font-size:12px; padding:8px 14px;">3D视觉</span>
-        <span class="flow-step" style="background:#b2bec3; font-size:12px; padding:8px 14px;">LiDAR</span>
-      </div>
-      <div class="arch-arrow-down">⬇</div>
-      <div class="arch-mid" style="font-size:18px; padding:16px 20px; border-radius:10px;">🧠 决策层</div>
-      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin:10px 0;">
-        <span class="flow-step" style="font-size:12px; padding:8px 14px;">WMS</span>
-        <span class="flow-step" style="font-size:12px; padding:8px 14px;">WCS</span>
-        <span class="flow-step" style="font-size:12px; padding:8px 14px;">AI调度</span>
-        <span class="flow-step" style="font-size:12px; padding:8px 14px;">数字孪生</span>
-      </div>
-      <div class="arch-arrow-down">⬇</div>
-      <div class="arch-bot" style="font-size:18px; padding:16px 20px; border-radius:10px;">⚡ 执行层</div>
-      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin:10px 0;">
-        <span class="flow-step" style="background:#e17055; font-size:12px; padding:8px 14px;">AGV/AMR</span>
-        <span class="flow-step" style="background:#e17055; font-size:12px; padding:8px 14px;">堆垛机</span>
-        <span class="flow-step" style="background:#e17055; font-size:12px; padding:8px 14px;">穿梭车</span>
-        <span class="flow-step" style="background:#e17055; font-size:12px; padding:8px 14px;">分拣机</span>
-        <span class="flow-step" style="background:#e17055; font-size:12px; padding:8px 14px;">复合机器人</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div id="panel-home" class="detail-panel">
-  <div class="detail-header">
-    <button class="btn-back" onclick="goBack()">← 返回首页</button>
-    <h1>🏠 首页总览</h1>
-  </div>
-  <div class="detail-body">
-    <br>
+    <nav>
+      <ul>
+        <li><a href="#home" onclick="showSection('home')">🏠 首页总览</a></li>
+<li><a href="#automation" onclick="showSection('automation')">🤖 仓储自动化</a></li>
+<li><a href="#wms" onclick="showSection('wms')">💻 WMS选型</a></li>
+<li><a href="#best-practices" onclick="showSection('best-practices')">📋 最佳实践</a></li>
+<li><a href="#industry" onclick="showSection('industry')">🏭 行业案例</a></li>
+<li><a href="#electronic-safety" onclick="showSection('electronic-safety')">🔌 电子料与安全</a></li>
+<li><a href="#standards" onclick="showSection('standards')">📐 体系标准</a></li>
+<li><a href="#oem" onclick="showSection('oem')">🚗 客户审核</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <main class="main">
+    <section id="home" class="content-section">
+<br>
 <h1>仓库管理与仓储自动化专家</h1>
 <br>
 <h2>概述</h2>
 <br>
-<p>此技能将 AI 转化为仓库管理和仓储自动化领域的专业顾问。覆盖从传统仓库管理方法论（Lean、5S、六西格玛）到最前沿的仓储自动化技术（AMR、数字孪生、AI 调度），以及 WMS 选型、行业实践案例、体系标准审核（IATF 16949/VDA 6.3/ISO 45001/ISO 27001）和全球汽车客户审核要求。</p>
+<p>此技能将 AI 转化为仓库管理和仓储自动化领域的专业顾问。覆盖从传统仓库管理方法论（Lean、5S、六西格玛）到最前沿的仓储自动化技术（AMR、数字孪生、AI 调度），以及 WMS 选型、行业实践案例、电子料管理（MSD/ESD）、危化品安全、体系标准审核（IATF 16949/VDA 6.3/ISO 45001/ISO 27001）和全球汽车客户审核要求。</p>
 <br>
 <h2>使用方式</h2>
 <br>
@@ -220,6 +88,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helv
 <tr><td>仓库管理系统（WMS）选型或功能咨询</td><td>`references/wms.md`</td><td>含2026年主流WMS产品对比与选型维度</td></tr>
 <tr><td>仓库管理方法论、布局设计、精益仓储</td><td>`references/best-practices.md`</td><td>Lean、5S、Six Sigma、布局规划、拣选策略</td></tr>
 <tr><td>特定行业仓储方案（医药、冷链、新能源、化工等）</td><td>`references/industry-cases.md`</td><td>行业案例与解决方案</td></tr>
+<tr><td>电子料与安全管理（MSD湿敏/ESD静电/危化品）</td><td>`references/electronic-and-safety.md`</td><td>MSD等级管理、ESD防护、危化品仓储安全</td></tr>
 <tr><td>体系标准审核（IATF 16949/VDA 6.3/ISO 45001/ISO 27001）</td><td>`references/standards.md`</td><td>四大体系仓储条款解读、审核清单、评分规则</td></tr>
 <tr><td>汽车客户审核（奔驰/宝马/大众/丰田/现代等）</td><td>`references/oem-audits.md`</td><td>五大客户审核体系、物流仓储要求、准备清单</td></tr>
 <tr><td>综合性/多领域问题</td><td>加载多个参考文档</td><td>先判断涉及哪些子领域</td></tr>
@@ -260,15 +129,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helv
 <li>❌ "AGV会被AMR完全替代" → ✅ 两者互补，AGV在固定路线高频搬运中仍有成本优势</li>
 <li>❌ "建设周期长、运维难" → ✅ 成熟服务商可快速交付，数字孪生技术实现远程运维</li>
 <br>
-  </div>
-</div>
-<div id="panel-automation" class="detail-panel">
-  <div class="detail-header">
-    <button class="btn-back" onclick="goBack()">← 返回首页</button>
-    <h1>🤖 仓储自动化</h1>
-  </div>
-  <div class="detail-body">
-    <h1>仓储自动化设备与技术（2026年版）</h1>
+</section>
+<section id="automation" class="content-section">
+<h1>仓储自动化设备与技术（2026年版）</h1>
 <br>
 <h2>一、AGV/AMR/复合机器人对比</h2>
 <br>
@@ -479,15 +342,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helv
 <li>AMR运行数据用于生产流程优化、预测性维护</li>
 <li>企业收入结构从硬件销售向数据服务倾斜</li>
 <br>
-  </div>
-</div>
-<div id="panel-wms" class="detail-panel">
-  <div class="detail-header">
-    <button class="btn-back" onclick="goBack()">← 返回首页</button>
-    <h1>💻 WMS选型</h1>
-  </div>
-  <div class="detail-body">
-    <h1>仓库管理系统（WMS）选型指南（2026年版）</h1>
+</section>
+<section id="wms" class="content-section">
+<h1>仓库管理系统（WMS）选型指南（2026年版）</h1>
 <br>
 <h2>一、WMS选型核心维度</h2>
 <br>
@@ -648,15 +505,9 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <li>中国WMS市场：品牌众多，分化明显</li>
 <li>头部厂商（按市场活跃度）：富勒(FLUX)、用友、弘人C-WMS、唯智、科箭</li>
 <br>
-  </div>
-</div>
-<div id="panel-best-practices" class="detail-panel">
-  <div class="detail-header">
-    <button class="btn-back" onclick="goBack()">← 返回首页</button>
-    <h1>📋 最佳实践</h1>
-  </div>
-  <div class="detail-body">
-    <h1>仓库管理最佳实践</h1>
+</section>
+<section id="best-practices" class="content-section">
+<h1>仓库管理最佳实践</h1>
 <br>
 <h2>一、仓库布局设计</h2>
 <br>
@@ -856,15 +707,9 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <tr><td>客户投诉率</td><td><0.5%</td></tr>
 </tbody></table>
 <br>
-  </div>
-</div>
-<div id="panel-industry" class="detail-panel">
-  <div class="detail-header">
-    <button class="btn-back" onclick="goBack()">← 返回首页</button>
-    <h1>🏭 行业案例</h1>
-  </div>
-  <div class="detail-body">
-    <h1>仓储自动化行业应用案例</h1>
+</section>
+<section id="industry" class="content-section">
+<h1>仓储自动化行业应用案例</h1>
 <br>
 <h2>一、电商物流仓储</h2>
 <br>
@@ -899,6 +744,46 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <tr><td>直播带货仓</td><td>弹性AMR+波次拣选+快速包装</td></tr>
 </tbody></table>
 <br>
+<p>---</p>
+<br>
+<h2>二、制造业线边物流</h2>
+<br>
+<h3>典型案例：汽车零部件工厂JIT配送</h3>
+<br>
+<table>
+<thead><tr><th>维度</th><th>详情</th></tr></thead>
+<tbody>
+<tr><td>部署规模</td><td>35台AMR</td></tr>
+<tr><td>应用环节</td><td>冲压车间原材料自动配送</td></tr>
+<tr><td>系统对接</td><td>AMR与MES对接，根据生产计划自动生成配送任务</td></tr>
+<tr><td>配送模式</td><td>JIT（准时制）配送</td></tr>
+<tr><td>配送准确率</td><td>98.5%→99.8%</td></tr>
+<tr><td>库存周转率</td><td>线边库存提升30%</td></tr>
+</tbody></table>
+<br>
+<h3>制造业三大模式</h3>
+<br>
+<table>
+<thead><tr><th>模式</th><th>说明</th><th>适用</th></tr></thead>
+<tbody>
+<tr><td>JIT配送</td><td>按生产节拍准时配送</td><td>汽车、电子装配线</td></tr>
+<tr><td>看板拉动</td><td>基于消耗信号补货</td><td>精益工厂</td></tr>
+<tr><td>循环配送</td><td>按固定路线巡回配送</td><td>多工位、小批量</td></tr>
+</tbody></table>
+<br>
+<h3>推荐方案</h3>
+<br>
+<table>
+<thead><tr><th>场景</th><th>方案</th></tr></thead>
+<tbody>
+<tr><td>冲压/焊装线</td><td>AGV+磁导航固定路线</td></tr>
+<tr><td>总装线</td><td>AMR柔性调度+复合机器人上下料</td></tr>
+<tr><td>3C电子</td><td>复合机器人（±0.02mm精度）</td></tr>
+<tr><td>锂电/光伏</td><td>AGV重载搬运+防尘设计</td></tr>
+<tr><td>半导体</td><td>复合机器人+洁净室适配</td></tr>
+</tbody></table>
+<br>
+<p>---</p>
 <br>
 <h2>三、医药仓储</h2>
 <br>
@@ -933,6 +818,40 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <tr><td>医疗器械</td><td>AGV+无菌包装+洁净室环境</td></tr>
 </tbody></table>
 <br>
+<p>---</p>
+<br>
+<h2>四、冷链仓储</h2>
+<br>
+<h3>案例：漯河众联冷链项目</h3>
+<br>
+<table>
+<thead><tr><th>维度</th><th>详情</th></tr></thead>
+<tbody>
+<tr><td>方案</td><td>托盘穿梭立体库 + 高位叉车</td></tr>
+<tr><td>温度</td><td>-25℃稳定运行</td></tr>
+<tr><td>库容</td><td>3万托（空间利用率提升5倍）</td></tr>
+<tr><td>管理</td><td>FIFO先进先出</td></tr>
+<tr><td>节能</td><td>密集存储减少冷量损失</td></tr>
+</tbody></table>
+<br>
+<h3>冷链仓储挑战</h3>
+<br>
+<li><strong>低温环境</strong>：设备需耐低温、防结霜</li>
+<li><strong>冷量损耗</strong>：门开启即损失冷量</li>
+<li><strong>人员受限</strong>：低温环境人工作业时间有限</li>
+<li><strong>能耗高</strong>：制冷成本占比大</li>
+<br>
+<h3>推荐方案</h3>
+<br>
+<table>
+<thead><tr><th>场景</th><th>方案</th></tr></thead>
+<tbody>
+<tr><td>冷冻仓储</td><td>穿梭车立体库（减少开门频次）</td></tr>
+<tr><td>冷藏仓储</td><td>AMR自动化拣选</td></tr>
+<tr><td>冷库门管理</td><td>快速卷帘门+自动化对接</td></tr>
+</tbody></table>
+<br>
+<p>---</p>
 <br>
 <h2>五、新能源仓储</h2>
 <br>
@@ -956,6 +875,29 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <li><strong>高效流转</strong>：产量大、流转快</li>
 <li><strong>温湿度控制</strong>：部分材料对水分敏感</li>
 <br>
+<p>---</p>
+<br>
+<h2>六、化工仓储</h2>
+<br>
+<h3>案例：硫酸镁全链路自动化</h3>
+<br>
+<table>
+<thead><tr><th>维度</th><th>详情</th></tr></thead>
+<tbody>
+<tr><td>方案</td><td>码垛机器人+四向穿梭车+自动装车系统</td></tr>
+<tr><td>运行</td><td>24小时连续作业</td></tr>
+<tr><td>效率</td><td>出入库132托/小时</td></tr>
+<tr><td>流程</td><td>包装→码垛→存储→装车全链路打通</td></tr>
+</tbody></table>
+<br>
+<h3>化工仓储特殊需求</h3>
+<br>
+<li><strong>防爆</strong>：防爆电气设备、防静电</li>
+<li><strong>异形物料</strong>：颗粒、桶装、袋装等</li>
+<li><strong>安全防护</strong>：泄漏检测、通风系统</li>
+<li><strong>隔离存储</strong>：不同化学品分区存储</li>
+<br>
+<p>---</p>
 <br>
 <h2>七、中小型企业分步实施方案</h2>
 <br>
@@ -1001,18 +943,98 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <br>
 <p><strong>核心理念</strong>："数字大脑驱动物理执行"——软件系统作为决策中枢，硬件设备作为执行肢体，物联网技术作为信息纽带。</p>
 <br>
-  </div>
-</div>
-<div id="panel-electronic-safety" class="detail-panel">
-  <div class="detail-header">
-    <button class="btn-back" onclick="goBack()">← 返回首页</button>
-    <h1>🔌 电子料与安全</h1>
-  </div>
-  <div class="detail-body">
-    <h1>电子料管理、仓库安全与危化品存储</h1>
+</section>
+<section id="electronic-safety" class="content-section">
+<h1>电子料管理、仓库安全与危化品存储</h1>
 <br>
 <p>本参考文档涵盖三大专业领域：湿敏元件（MSD）管理、ESD静电防护、危险化学品仓储安全。</p>
 <br>
+<p><hr class="section-divider"></p>
+<br>
+<h2>一、湿敏元件（MSD）管理</h2>
+<br>
+<h3>1. 什么是湿敏元件（MSD）</h3>
+<br>
+<p>湿敏元件（Moisture Sensitive Device）是指因材质或结构特性，在存储或使用过程中容易从环境中吸收湿气，在后续回流焊等高温制程中，内部湿气迅速汽化导致元件开裂、分层或性能劣化的元器件——俗称"爆米花效应"。</p>
+<br>
+<h3>2. MSL 湿度敏感等级</h3>
+<br>
+<p>依据 <strong>IPC/JEDEC J-STD-020</strong> 标准，MSL 分为 8 个等级：</p>
+<br>
+<table>
+<thead><tr><th>MSL等级</th><th>环境条件</th><th>车间寿命（Floor Life）</th><th>包装要求</th><th>典型器件</th></tr></thead>
+<tbody>
+<tr><td>**MSL 1**</td><td>≤30°C/85%RH</td><td>无限制</td><td>无需特殊防潮</td><td>片式电阻、陶瓷电容(MLCC)、晶振、普通二极管</td></tr>
+<tr><td>**MSL 2**</td><td>≤30°C/60%RH</td><td>1年</td><td>防潮袋+干燥剂</td><td>部分高精度电阻、车规级功率模块</td></tr>
+<tr><td>**MSL 2a**</td><td>≤30°C/60%RH</td><td>4周</td><td>铝塑防潮袋+干燥剂+HIC</td><td>部分模拟IC</td></tr>
+<tr><td>**MSL 3**</td><td>≤30°C/60%RH</td><td>168小时（7天）</td><td>铝塑防潮袋+干燥剂+HIC</td><td>MOSFET、IGBT、SAW滤波器、树脂封MLCC</td></tr>
+<tr><td>**MSL 4**</td><td>≤30°C/60%RH</td><td>72小时</td><td>铝塑防潮袋+干燥剂+HIC</td><td>部分BGA、复杂封装IC</td></tr>
+<tr><td>**MSL 5**</td><td>≤30°C/60%RH</td><td>48小时</td><td>铝塑防潮袋+干燥剂+HIC</td><td>高可靠性场景器件</td></tr>
+<tr><td>**MSL 5a**</td><td>≤30°C/60%RH</td><td>24小时</td><td>铝塑防潮袋+干燥剂+HIC</td><td>精密封装器件</td></tr>
+<tr><td>**MSL 6**</td><td>≤30°C/60%RH</td><td>使用前必须烘烤</td><td>强制烘焙</td><td>极高敏感器件</td></tr>
+</tbody></table>
+<br>
+<p>> <strong>HIC = 湿度指示卡（Humidity Indicator Card）</strong>，用于检测防潮袋内的湿度是否超标。</p>
+<br>
+<h3>3. MSD 仓储管理核心要求</h3>
+<br>
+<p>#### 3.1 环境控制</p>
+<br>
+<table>
+<thead><tr><th>参数</th><th>要求</th></tr></thead>
+<tbody>
+<tr><td>温度</td><td>≤30°C（MSL 2级以上）</td></tr>
+<tr><td>相对湿度</td><td>≤60% RH（MSL 2级以上，MSL 1为≤85%RH）</td></tr>
+<tr><td>监控设备</td><td>温湿度自动记录仪，连续不间断记录</td></tr>
+<tr><td>超标处理</td><td>超标时空调/除湿机自动启动</td></tr>
+</tbody></table>
+<br>
+<p>#### 3.2 存储要求</p>
+<br>
+<table>
+<thead><tr><th>存储状态</th><th>要求</th></tr></thead>
+<tbody>
+<tr><td>**未开封**</td><td>原厂防潮袋密封保存，检查包装完整性（无破损、无漏气）</td></tr>
+<tr><td>**已开封**</td><td>记录开封时间，开始计算车间寿命，优先使用</td></tr>
+<tr><td>**超期物料**</td><td>必须按J-STD-033标准烘烤后才能使用</td></tr>
+<tr><td>**防潮柜存储**</td><td>MSL 3级以上推荐使用≤10%RH防潮柜，可延长暴露寿命5-10倍</td></tr>
+</tbody></table>
+<br>
+<p>#### 3.3 烘烤条件（依据 J-STD-033）</p>
+<br>
+<table>
+<thead><tr><th>封装厚度</th><th>烘烤温度</th><th>烘烤时间（MSL 2-3）</th><th>烘烤时间（MSL 4-6）</th></tr></thead>
+<tbody>
+<tr><td>≤1.4mm</td><td>125°C</td><td>4-8小时</td><td>8-14小时</td></tr>
+<tr><td>1.4-2.0mm</td><td>125°C</td><td>9-12小时</td><td>16-24小时</td></tr>
+<tr><td>2.0-4.5mm</td><td>125°C</td><td>16-24小时</td><td>36-48小时</td></tr>
+<tr><td>低温烘烤</td><td>40°C</td><td>按5%RH环境延长</td><td>参考厂家建议</td></tr>
+</tbody></table>
+<br>
+<p>> ⚠️ 低温烘烤（40°C）用于对温度敏感的器件，时间较长但对器件损伤最小。</p>
+<br>
+<p>#### 3.4 车间寿命管理流程</p>
+<br>
+<pre><code>物料入库 → 检查包装完整+HIC状态
+    ↓
+未开封 → 防潮柜/常规仓库存储 → 使用前开封
+    ↓
+开封 → 记录"开封时间"标签 → 计算截止时间
+    ↓
+暴露中 → 每次使用记录取用时间 → 累计暴露时长
+    ↓
+超期？→ YES → 烘烤处理 → 重新开封，重置计时
+       → NO  → 继续使用</code></pre>
+<br>
+<p>#### 3.5 MSD 审核常见问题</p>
+<br>
+<pre><code>- "如何确认防潮袋没有破损？"
+- "开封标签在哪里？暴露了多久？"
+- "这台除湿机24小时运行吗？记录在哪里？"
+- "MSL 3的168小时是怎么跟踪的？系统还是人工？"
+- "烘烤记录在哪里？烘烤后是否重新贴了开封标签？"</code></pre>
+<br>
+<p><hr class="section-divider"></p>
 <br>
 <h2>二、ESD 静电防护</h2>
 <br>
@@ -1091,6 +1113,113 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 - "这个防静电袋是全封闭的吗？有没有破洞？"
 - "包装上是否有 ESD 警示标识？"</code></pre>
 <br>
+<p><hr class="section-divider"></p>
+<br>
+<h2>三、危险化学品仓储安全</h2>
+<br>
+<h3>1. 核心法规标准</h3>
+<br>
+<table>
+<thead><tr><th>法规/标准</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>**GB 15603-2022**</td><td>危险化学品仓库储存通则（最新版）</td></tr>
+<tr><td>**《危险化学品安全管理条例》**</td><td>国务院令第591号</td></tr>
+<tr><td>**GB 18218-2018**</td><td>危险化学品重大危险源辨识</td></tr>
+<tr><td>**GB 50016**</td><td>建筑设计防火规范</td></tr>
+<tr><td>**GB 50160**</td><td>石油化工企业设计防火标准</td></tr>
+</tbody></table>
+<br>
+<h3>2. 危化品三大储存方式</h3>
+<br>
+<table>
+<thead><tr><th>方式</th><th>说明</th><th>适用</th></tr></thead>
+<tbody>
+<tr><td>**隔离储存**</td><td>同一房间不同区域，用防火墙隔离</td><td>不同类别危化品</td></tr>
+<tr><td>**隔开储存**</td><td>同一建筑内，用隔板/隔墙分开</td><td>性质不冲突的危化品</td></tr>
+<tr><td>**分离储存**</td><td>不同建筑物分开储存</td><td>禁忌物料（如氧化剂+还原剂）</td></tr>
+</tbody></table>
+<br>
+<h3>3. 危化品禁忌存储对照表</h3>
+<br>
+<p>> ⚠️ <strong>核心原则</strong>：以下类别的危化品<strong>严禁混存</strong></p>
+<br>
+<table>
+<thead><tr><th>危化品类别</th><th>禁忌混放</th><th>原因</th></tr></thead>
+<tbody>
+<tr><td>氧化剂</td><td>还原剂、易燃物</td><td>剧烈反应，引发火灾爆炸</td></tr>
+<tr><td>酸类</td><td>碱类</td><td>中和反应，产热喷溅</td></tr>
+<tr><td>易燃液体</td><td>氧化剂、自燃物</td><td>火灾风险</td></tr>
+<tr><td>氰化物</td><td>酸类</td><td>产生剧毒氰化氢气体</td></tr>
+<tr><td>遇水反应品</td><td>含水/潮湿物品</td><td>释放易燃/有毒气体</td></tr>
+<tr><td>有机过氧化物</td><td>任何可燃物</td><td>剧烈分解爆炸</td></tr>
+</tbody></table>
+<br>
+<h3>4. 危化品仓库基础设施要求</h3>
+<br>
+<table>
+<thead><tr><th>要素</th><th>要求</th></tr></thead>
+<tbody>
+<tr><td>**建筑结构**</td><td>防火墙 ≥4小时耐火极限，防爆泄压面</td></tr>
+<tr><td>**通风系统**</td><td>强制机械通风（防爆风机），换气次数 ≥8-12次/小时</td></tr>
+<tr><td>**温控**</td><td>根据化学品性质（部分需≤25°C），严禁阳光直射</td></tr>
+<tr><td>**电气**</td><td>防爆型电气设备（Ex认证）、防静电接地</td></tr>
+<tr><td>**泄漏收集**</td><td>防渗漏地面+围堰/收集沟，泄漏应急处理包</td></tr>
+<tr><td>**消防**</td><td>自动喷淋/泡沫灭火系统+灭火器（类型匹配化学品性质）</td></tr>
+<tr><td>**监控**</td><td>温湿度传感器+可燃气体探测器+视频监控</td></tr>
+<tr><td>**个体防护**</td><td>PPE存放点（防化手套、护目镜、防毒面具、防护服）</td></tr>
+<tr><td>**MSDS**</td><td>每种化学品**MSDS（安全数据表）**必须现场可查阅</td></tr>
+<tr><td>**标识**</td><td>GHS化学品分类标签+安全警示标识</td></tr>
+</tbody></table>
+<br>
+<h3>5. 危化品出入库管理</h3>
+<br>
+<table>
+<thead><tr><th>环节</th><th>操作要求</th></tr></thead>
+<tbody>
+<tr><td>**入库检验**</td><td>检查包装完整性、GHS标签完整、MSDS随货</td></tr>
+<tr><td>**入库登记**</td><td>品种、数量、批次、生产日期、有效期、MSDS编号</td></tr>
+<tr><td>**在库管理**</td><td>分区分类存放、先进先出（FIFO）、定期巡检（每周至少1次）</td></tr>
+<tr><td>**温湿度记录**</td><td>每日不少于2次，超标立刻处理</td></tr>
+<tr><td>**出库**</td><td>检查包装完好、限额领用、双人复核（剧毒品）</td></tr>
+<tr><td>**剧毒品**</td><td>双人双锁、双人收发、双人运输、专用台账</td></tr>
+</tbody></table>
+<br>
+<h3>6. 特殊化学品管理</h3>
+<br>
+<table>
+<thead><tr><th>化学品类型</th><th>特殊要求</th></tr></thead>
+<tbody>
+<tr><td>**剧毒化学品**</td><td>专用仓库+双人双锁+视频监控+公安备案</td></tr>
+<tr><td>**易制毒化学品**</td><td>公安备案+购买许可证+专用台账</td></tr>
+<tr><td>**易制爆化学品**</td><td>公安备案+专用仓库+流向登记</td></tr>
+<tr><td>**压缩气体/液化气**</td><td>直立存放+防倾倒链+远离热源+气瓶帽</td></tr>
+<tr><td>**易燃液体**</td><td>防爆柜（黄色柜）+接地+远离火源</td></tr>
+<tr><td>**腐蚀品**</td><td>耐腐蚀容器+二次容器（防泄漏托盘）+洗眼器/淋浴器</td></tr>
+</tbody></table>
+<br>
+<h3>7. 泄漏应急处理</h3>
+<br>
+<pre><code>发现泄漏 → 立即报警 → 疏散人员
+    ↓
+判断泄漏物性质（查MSDS）
+    ↓
+佩戴相应PPE → 使用泄漏应急包围堵
+    ↓
+吸附/中和/收集泄漏物 → 放入专用容器
+    ↓
+废弃物按危废处理 → 报告+整改</code></pre>
+<br>
+<h3>8. 危化品仓库审核常见问题</h3>
+<br>
+<pre><code>- "MSDS在哪里？我能看一下吗？"
+- "氧化剂和易燃物为什么放在一起？"
+- "通风系统工作正常吗？上次维护记录？"
+- "泄漏应急包在哪里？员工会用吗？"
+- "灭火器类型和这个化学品匹配吗？"
+- "剧毒品的双人双锁执行情况？"
+- "温湿度记录为什么有中断？"</code></pre>
+<br>
+<p><hr class="section-divider"></p>
 <br>
 <h2>四、仓库综合安全检查清单</h2>
 <br>
@@ -1131,18 +1260,115 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <tr><td>工伤记录</td><td>及时报告+调查+整改</td></tr>
 </tbody></table>
 <br>
-  </div>
-</div>
-<div id="panel-standards" class="detail-panel">
-  <div class="detail-header">
-    <button class="btn-back" onclick="goBack()">← 返回首页</button>
-    <h1>📐 体系标准</h1>
-  </div>
-  <div class="detail-body">
-    <h1>体系标准与仓库管理审核要求</h1>
+<p><hr class="section-divider"></p>
+<br>
+<h2>五、关键数据速查卡</h2>
+<br>
+<table>
+<thead><tr><th>参数</th><th>数值</th></tr></thead>
+<tbody>
+<tr><td>常规电子料存储温度</td><td>15-30°C</td></tr>
+<tr><td>常规电子料存储湿度</td><td>30-60%RH（防静电），MSL 2+为≤60%RH</td></tr>
+<tr><td>MSL 3车间寿命</td><td>168小时（7天）</td></tr>
+<tr><td>EPA防静电地板电阻</td><td>10⁴-10⁹ Ω</td></tr>
+<tr><td>防静电腕带接地电阻</td><td>1MΩ ±20%</td></tr>
+<tr><td>危化品仓库换气次数</td><td>≥8-12次/小时</td></tr>
+<tr><td>灭火器检查频率</td><td>每月</td></tr>
+<tr><td>消防演练频率</td><td>每半年</td></tr>
+<tr><td>货架检查频率</td><td>每季度</td></tr>
+<tr><td>MSDS更新要求</td><td>每5年或有变更时</td></tr>
+</tbody></table>
+<br>
+</section>
+<section id="standards" class="content-section">
+<h1>体系标准与仓库管理审核要求</h1>
 <br>
 <p>本参考文档详细解读 IATF 16949、ISO 45001、ISO 27001、VDA 6.3 四大体系标准中与仓库/物流管理直接相关的审核要求。</p>
 <br>
+<p>---</p>
+<br>
+<h2>一、IATF 16949：汽车行业质量管理体系 — 仓储相关条款</h2>
+<br>
+<p>IATF 16949 是国际汽车工作组（IATF）制定的汽车行业质量管理体系标准，基于 ISO 9001 增加了汽车行业特殊要求。</p>
+<br>
+<h3>1. 条款 8.5.4 — 防护（Preservation）</h3>
+<br>
+<p>> 这是 IATF 16949 中与仓储管理<strong>最直接相关</strong>的核心条款。</p>
+<br>
+<p>#### 8.5.4.1 防护 — 补充要求</p>
+<br>
+<table>
+<thead><tr><th>要求项</th><th>具体内容</th><th>仓库落地要点</th></tr></thead>
+<tbody>
+<tr><td>**库存管理系统**</td><td>必须使用库存管理系统优化库存周转，确保库存周转（如FIFO）</td><td>WMS必须支持批次管理、效期管理、先进先出控制</td></tr>
+<tr><td>**过期产品控制**</td><td>过期产品应按不合格品控制</td><td>建立呆滞物料识别和处理流程</td></tr>
+<tr><td>**标识管理**</td><td>全流程标识，防止混淆</td><td>库位标识、物料标识、状态标识（待检/合格/不合格/冻结）</td></tr>
+<tr><td>**污染控制**</td><td>防止产品在存储中受污染</td><td>温湿度控制、防尘、防腐蚀、防静电（ESD）</td></tr>
+<tr><td>**包装规范**</td><td>符合客户包装要求</td><td>包装标准作业指导书（SOP）</td></tr>
+<tr><td>**存储条件**</td><td>满足产品特殊存储要求</td><td>温度/湿度/光照监控记录</td></tr>
+</tbody></table>
+<br>
+<p>#### 典型审核问题（仓储相关）</p>
+<br>
+<pre><code>审核员："请带我看你们的温湿度记录"
+审核员："这个物料的FIFO如何保证？"
+审核员："过期物料存放在哪里？如何标识？"
+审核员："待检区和合格区是否有物理隔离？"
+审核员："防错措施在哪里？如何防止相似物料混淆？"</code></pre>
+<br>
+<p>#### IATF 16949 仓储必查清单</p>
+<br>
+<table>
+<thead><tr><th>检查项</th><th>要求</th><th>常见不符合</th></tr></thead>
+<tbody>
+<tr><td>库存准确率</td><td>系统数据与实物一致</td><td>账实不符</td></tr>
+<tr><td>先进先出</td><td>系统自动控制FIFO</td><td>无系统支持/随意摆放</td></tr>
+<tr><td>温湿度控制</td><td>有监控设备+记录+超标处理</td><td>无记录/无超标处理预案</td></tr>
+<tr><td>物料标识</td><td>全流程可追溯</td><td>标识缺失/模糊</td></tr>
+<tr><td>区域划分</td><td>待检/合格/不合格物理隔离</td><td>混放/无物理隔离</td></tr>
+<tr><td>防护措施</td><td>防尘/防潮/防静电</td><td>无防护/防护不足</td></tr>
+<tr><td>批次追溯</td><td>可从成品追溯到原材料批次</td><td>追溯链断裂</td></tr>
+<tr><td>过期管理</td><td>定期盘点+过期处置流程</td><td>过期物料未处理</td></tr>
+</tbody></table>
+<br>
+<h3>2. 条款 8.5.2 — 标识和可追溯性</h3>
+<br>
+<table>
+<thead><tr><th>要求</th><th>仓储落地</th></tr></thead>
+<tbody>
+<tr><td>生产过程输出的唯一标识</td><td>料号+批次号+序列号，入库即扫码</td></tr>
+<tr><td>可追溯性系统</td><td>WMS系统保留完整的出入库记录</td></tr>
+<tr><td>追溯方向</td><td>正向追溯（原料→成品）和反向追溯（成品→原料）</td></tr>
+</tbody></table>
+<br>
+<h3>3. 条款 7.1.3 — 基础设施</h3>
+<br>
+<p>仓储相关的基础设施要求：</p>
+<li>仓库建筑（地面平整、承重、通风）</li>
+<li>仓储设备（货架、叉车、AGV/AMR）</li>
+<li>信息系统（WMS、ERP接口）</li>
+<li>温湿度控制设备</li>
+<br>
+<h3>4. 条款 7.1.4 — 过程运行环境</h3>
+<br>
+<table>
+<thead><tr><th>仓储环境因素</th><th>控制要求</th></tr></thead>
+<tbody>
+<tr><td>温度</td><td>按产品要求设定范围，实时监控</td></tr>
+<tr><td>湿度</td><td>防潮/干燥，电子元器件<30% RH</td></tr>
+<tr><td>洁净度</td><td>洁净室存储（半导体/医药）</td></tr>
+<tr><td>静电防护（ESD）</td><td>防静电地板、手腕带、ESD包装</td></tr>
+<tr><td>照明</td><td>作业区域≥200Lux，拣选区≥300Lux</td></tr>
+</tbody></table>
+<br>
+<h3>5. 条款 8.7 — 不合格输出的控制</h3>
+<br>
+<p>仓库需建立：</p>
+<li>不合格品隔离区（红色标识/物理隔离）</li>
+<li>退货区（待退回供应商）</li>
+<li>报废区（待处置）</li>
+<br>
+<p>---</p>
 <br>
 <h2>二、VDA 6.3：过程审核 — 物流仓储相关要素</h2>
 <br>
@@ -1253,6 +1479,70 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <tr><td>**运输管理**</td><td>运输时效、在途监控、异常处理</td></tr>
 </tbody></table>
 <br>
+<p>---</p>
+<br>
+<h2>三、ISO 45001：职业健康安全管理体系 — 仓储安全</h2>
+<br>
+<p>ISO 45001:2018 关注员工职业健康与安全，仓储环节在以下方面密切相关：</p>
+<br>
+<h3>仓储安全核心审核要素</h3>
+<br>
+<p>#### 1. 危险源识别与风险评估（条款 6.1.2）</p>
+<br>
+<table>
+<thead><tr><th>仓储危险源</th><th>典型风险</th><th>控制措施</th></tr></thead>
+<tbody>
+<tr><td>叉车作业</td><td>碰撞、碾压</td><td>限速、安全带、声光报警、人车分流</td></tr>
+<tr><td>高处存取</td><td>坠落</td><td>安全护栏、安全带、防坠器</td></tr>
+<tr><td>堆垛坍塌</td><td>砸伤</td><td>货架定期检查、承重标识、限高标识</td></tr>
+<tr><td>危化品存储</td><td>泄漏、火灾、爆炸</td><td>防爆柜、MSDS、应急洗眼器、通风</td></tr>
+<tr><td>手动搬运</td><td>腰背损伤</td><td>机械辅助、合理重量限制、正确姿势培训</td></tr>
+<tr><td>AGV/AMR运行</td><td>人机碰撞</td><td>安全传感器、警示区域、急停按钮</td></tr>
+<tr><td>消防通道堵塞</td><td>逃生受阻</td><td>通道保持畅通、定期检查</td></tr>
+<tr><td>粉尘/化学品暴露</td><td>职业病</td><td>PPE、通风、定期体检</td></tr>
+</tbody></table>
+<br>
+<p>#### 2. 法律法规合规（条款 6.1.3）</p>
+<br>
+<li>消防验收合格证</li>
+<li>特种设备检验（叉车、货梯）</li>
+<li>危化品存储许可证</li>
+<li>特种作业人员持证上岗（叉车驾驶证）</li>
+<br>
+<p>#### 3. 应急准备与响应（条款 8.2）</p>
+<br>
+<table>
+<thead><tr><th>应急场景</th><th>准备要求</th></tr></thead>
+<tbody>
+<tr><td>火灾</td><td>灭火器分布图、消防演练记录、疏散路线</td></tr>
+<tr><td>化学品泄漏</td><td>泄漏应急包、MSDS可获取、应急处理培训</td></tr>
+<tr><td>货架坍塌</td><td>隔离方案、救援预案</td></tr>
+<tr><td>停电</td><td>应急照明、UPS保障WMS系统</td></tr>
+</tbody></table>
+<br>
+<p>#### 4. 仓库5S与安全</p>
+<br>
+<table>
+<thead><tr><th>步骤</th><th>仓储安全应用</th></tr></thead>
+<tbody>
+<tr><td>整理</td><td>清除不必要物料、易燃物远离热源</td></tr>
+<tr><td>整顿</td><td>库位标识清晰、安全通道无阻塞</td></tr>
+<tr><td>清扫</td><td>地面无油污/积水、无杂物绊倒风险</td></tr>
+<tr><td>清洁</td><td>标准化巡检清单、可视化安全标识</td></tr>
+<tr><td>素养</td><td>安全培训、KYT（危险预知训练）</td></tr>
+</tbody></table>
+<br>
+<p>#### ISO 45001 仓库审核高频问题</p>
+<br>
+<pre><code>- "最近一次消防演练是什么时候？记录在哪？"
+- "叉车操作人员是否全部持证？请提供证件"
+- "货架的承重标识在哪里？最近一次检测报告？"
+- "危化品的MSDS放在哪里？员工能找到吗？"
+- "应急预案是否演练过？演练记录？"
+- "员工PPE发放记录？佩戴情况？"
+- "近三年是否有工伤记录？如何处理的？"</code></pre>
+<br>
+<p>---</p>
 <br>
 <h2>四、ISO 27001：信息安全管理体系 — 仓储信息安全</h2>
 <br>
@@ -1293,6 +1583,27 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 - "数据备份在哪里？恢复测试做过吗？"
 - "WMS系统是否有操作日志？能追溯谁改过库存数据吗？"</code></pre>
 <br>
+<p>---</p>
+<br>
+<h2>五、四大体系仓储审核对照矩阵</h2>
+<br>
+<table>
+<thead><tr><th>审核维度</th><th>IATF 16949</th><th>VDA 6.3</th><th>ISO 45001</th><th>ISO 27001</th></tr></thead>
+<tbody>
+<tr><td>库存管理</td><td>★★★★★</td><td>★★★★</td><td>-</td><td>★★</td></tr>
+<tr><td>物料标识追溯</td><td>★★★★★</td><td>★★★★</td><td>-</td><td>★★★</td></tr>
+<tr><td>FIFO/效期管理</td><td>★★★★★</td><td>★★★★</td><td>-</td><td>-</td></tr>
+<tr><td>温湿度/环境控制</td><td>★★★★</td><td>★★★★</td><td>★★</td><td>-</td></tr>
+<tr><td>仓库安全</td><td>★★</td><td>★★</td><td>★★★★★</td><td>-</td></tr>
+<tr><td>危化品管理</td><td>★★★</td><td>★★★</td><td>★★★★★</td><td>-</td></tr>
+<tr><td>信息安全</td><td>★★</td><td>★★</td><td>-</td><td>★★★★★</td></tr>
+<tr><td>人员培训</td><td>★★★</td><td>★★★★</td><td>★★★★★</td><td>★★★</td></tr>
+<tr><td>应急管理</td><td>★★★</td><td>★★★</td><td>★★★★★</td><td>★★★★</td></tr>
+<tr><td>设备维护</td><td>★★★</td><td>★★★★</td><td>★★★★</td><td>★</td></tr>
+<tr><td>持续改进</td><td>★★★</td><td>★★★★★</td><td>★★★</td><td>★★★</td></tr>
+</tbody></table>
+<br>
+<p>---</p>
 <br>
 <h2>六、仓库人员综合能力要求</h2>
 <br>
@@ -1311,18 +1622,27 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <br>
 <p>> <strong>核心原则</strong>：所有体系中，仓库管理遵循 "<strong>标识清楚、存储合规、流转有序、可追溯、可防护、持续改进</strong>" 的共同底层逻辑。</p>
 <br>
-  </div>
-</div>
-<div id="panel-oem" class="detail-panel">
-  <div class="detail-header">
-    <button class="btn-back" onclick="goBack()">← 返回首页</button>
-    <h1>🚗 客户审核</h1>
-  </div>
-  <div class="detail-body">
-    <h1>全球知名汽车客户审核要求 — 物流与仓储篇</h1>
+</section>
+<section id="oem" class="content-section">
+<h1>全球知名汽车客户审核要求 — 物流与仓储篇</h1>
 <br>
 <p>本文档整理奔驰、宝马、大众、丰田、现代/起亚五大全球汽车客户的供应商审核体系中与物流仓储管理直接相关的要求。</p>
 <br>
+<p>---</p>
+<br>
+<h2>一、客户审核体系速览</h2>
+<br>
+<table>
+<thead><tr><th>客户</th><th>审核体系名称</th><th>核心标准基础</th><th>适用对象</th><th>仓储权重</th></tr></thead>
+<tbody>
+<tr><td>**奔驰**（Mercedes-Benz）</td><td>DPA（Daimler Process Audit）</td><td>VDA 6.3</td><td>所有供应商</td><td>★★★★</td></tr>
+<tr><td>**宝马**（BMW）</td><td>SPS / VPS（Supplier Potential Analysis）</td><td>VDA 6.3</td><td>所有供应商</td><td>★★★★</td></tr>
+<tr><td>**大众**（VW/Audi/Porsche）</td><td>Formel-Q（质量能力评价）</td><td>VDA 6.3 + IATF 16949</td><td>所有供应商</td><td>★★★</td></tr>
+<tr><td>**丰田**（Toyota）</td><td>SQAM（供应商质量保证手册）</td><td>TPS精益生产</td><td>所有供应商</td><td>★★★★</td></tr>
+<tr><td>**现代/起亚**（Hyundai/Kia）</td><td>五星审核（5-Star Audit）</td><td>ISO/IATF + 3定5S</td><td>所有供应商</td><td>★★★</td></tr>
+</tbody></table>
+<br>
+<p>---</p>
 <br>
 <h2>二、奔驰（Mercedes-Benz）—— DPA审核</h2>
 <br>
@@ -1381,6 +1701,39 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 - "如果明天仓库停电24小时，你怎么保障对奔驰的交付？"
 - "温湿度监控的偏差处理流程？上一个超标事件怎么处理的？"</code></pre>
 <br>
+<p>---</p>
+<br>
+<h2>三、宝马（BMW）—— SPS/VPS审核</h2>
+<br>
+<h3>宝马供应商标杆标准</h3>
+<br>
+<p>宝马对供应商的要求与奔驰基本同级别，核心差异在于更强调<strong>数据驱动</strong>和<strong>数字化</strong>。</p>
+<br>
+<table>
+<thead><tr><th>宝马关注的仓储维度</th><th>特点</th></tr></thead>
+<tbody>
+<tr><td>**数据分析能力**</td><td>要求供应商具备物流数据分析能力（KPI趋势图、异常预警）</td></tr>
+<tr><td>**数字化水平**</td><td>倾向选择WMS成熟度高的供应商</td></tr>
+<tr><td>**系统互联**</td><td>供应商WMS需能与宝马供应链系统对接</td></tr>
+<tr><td>**弹性供应**</td><td>波动需求下的库存弹性（安全库存动态调整）</td></tr>
+</tbody></table>
+<br>
+<h3>宝马SPS审核重点</h3>
+<br>
+<pre><code>战略 → 研发 → 质量 → 生产 → 分供方 → 成本 → 物流</code></pre>
+<br>
+<p>物流板块占比与奔驰类似，但更关注以下特色项：</p>
+<br>
+<table>
+<thead><tr><th>宝马特有项</th><th>审核要求</th></tr></thead>
+<tbody>
+<tr><td>实时库存可视化</td><td>宝马希望看到实时库存数据，而非日报表</td></tr>
+<tr><td>预测性补货</td><td>基于历史数据主动预测补货需求</td></tr>
+<tr><td>异常预警机制</td><td>库存异常/交付异常自动预警，非人工发现</td></tr>
+<tr><td>数字化追溯</td><td>鼓励RFID/二维码全流程追溯</td></tr>
+</tbody></table>
+<br>
+<p>---</p>
 <br>
 <h2>四、大众（Volkswagen）—— Formel-Q</h2>
 <br>
@@ -1431,6 +1784,57 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 - "紧急发货流程是什么？上一次什么情况？"
 - "你的JIT配送如何保证准时率？"</code></pre>
 <br>
+<p>---</p>
+<br>
+<h2>五、丰田（Toyota）—— SQAM / TPS</h2>
+<br>
+<h3>丰田供应商质量保证手册（SQAM）</h3>
+<br>
+<p>丰田的审核体系基于 <strong>TPS（丰田生产方式）</strong>，核心理念是"<strong>自働化</strong>"与"<strong>Just-in-Time</strong>"。</p>
+<br>
+<h3>丰田仓储审核核心理念</h3>
+<br>
+<pre><code>TPS两大支柱：
+  ① 自働化（Jidoka）—— 异常自动停止，不传递不良品
+  ② Just-in-Time —— 只在需要时，按需要的量，送到需要的地方</code></pre>
+<br>
+<h3>丰田仓储审核特色要求</h3>
+<br>
+<table>
+<thead><tr><th>TPS原则</th><th>仓储落地方案</th><th>审核要点</th></tr></thead>
+<tbody>
+<tr><td>**准时化（JIT）**</td><td>按生产节拍配送，线边库存最少化</td><td>配送准时率、线边库存量</td></tr>
+<tr><td>**自働化**</td><td>防错机制：相似物料物理隔离+系统锁定</td><td>防错装置有效性</td></tr>
+<tr><td>**看板管理**</td><td>物料看板拉动补货</td><td>看板执行率、补货及时性</td></tr>
+<tr><td>**平准化**</td><td>均衡收货和发货计划</td><td>波次波动控制</td></tr>
+<tr><td>**5S/3定**</td><td>整理/整顿/清扫/清洁/素养 + 定品/定位/定量</td><td>现场5S水平</td></tr>
+<tr><td>**可视化管理**</td><td>库存状态目视化（红黄绿标识）</td><td>是否一眼可见异常</td></tr>
+<tr><td>**持续改善（Kaizen）**</td><td>仓储改善提案、QC小组活动</td><td>改善案例数量和效果</td></tr>
+<tr><td>**标准作业**</td><td>每个仓储作业有SOP</td><td>SOP与实际操作一致性</td></tr>
+</tbody></table>
+<br>
+<h3>丰田物流核心KPI</h3>
+<br>
+<table>
+<thead><tr><th>KPI</th><th>目标</th></tr></thead>
+<tbody>
+<tr><td>线边配送准时率</td><td>100%（丰田零容忍缺料停线）</td></tr>
+<tr><td>FIFO遵守率</td><td>100%</td></tr>
+<tr><td>库存周转天数</td><td>持续缩短（TPS追求零库存）</td></tr>
+<tr><td>货损率</td><td>0</td></tr>
+<tr><td>5S评分</td><td>持续提升</td></tr>
+</tbody></table>
+<br>
+<h3>丰田SQAM仓储审核典型提问</h3>
+<br>
+<pre><code>- "这个物料在看板系统中的补货逻辑是什么？"
+- "请演示一个异常发生时的处置流程（缺料/来料不良）"
+- "你的员工最近一次改善提案是什么？效果如何？"
+- "为什么线边库存是这个水平？有没有进一步降低的空间？"
+- "5S评分最近三个月的变化趋势？"
+- "如何保证相似物料不被混淆？请演示防错机制"</code></pre>
+<br>
+<p>---</p>
 <br>
 <h2>六、现代/起亚（Hyundai/Kia）—— 五星审核</h2>
 <br>
@@ -1478,6 +1882,28 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <li><strong>持续改善要求</strong>：不只看当前水平，更看改善趋势</li>
 <li><strong>数据量化</strong>：要求所有审查结果必须量化统计</li>
 <br>
+<p>---</p>
+<br>
+<h2>七、五大客户物流仓储审核对比矩阵</h2>
+<br>
+<table>
+<thead><tr><th>审核维度</th><th>奔驰</th><th>宝马</th><th>大众</th><th>丰田</th><th>现代/起亚</th></tr></thead>
+<tbody>
+<tr><td>**体系基础**</td><td>VDA 6.3</td><td>VDA 6.3</td><td>VDA 6.3</td><td>TPS/SQAM</td><td>3定5S+IATF</td></tr>
+<tr><td>**物流权重**</td><td>★★★★★</td><td>★★★★★</td><td>★★★★</td><td>★★★★</td><td>★★★</td></tr>
+<tr><td>**WMS要求**</td><td>高度集成</td><td>实时可视化</td><td>EDI对接</td><td>看板电子化</td><td>基本功能</td></tr>
+<tr><td>**追溯要求**</td><td>全链条</td><td>全链条+数字化</td><td>全链条</td><td>全链条</td><td>全链条</td></tr>
+<tr><td>**FIFO管控**</td><td>系统强制</td><td>系统强制</td><td>系统+物理</td><td>物理优先</td><td>系统+物理</td></tr>
+<tr><td>**5S要求**</td><td>高</td><td>高</td><td>高</td><td>极高</td><td>极高</td></tr>
+<tr><td>**应急计划**</td><td>必须</td><td>必须</td><td>必须（5场景）</td><td>必须</td><td>必须</td></tr>
+<tr><td>**持续改善**</td><td>必须</td><td>数据驱动</td><td>必须</td><td>Kaizen特色</td><td>量化趋势</td></tr>
+<tr><td>**包装规范**</td><td>MB标准</td><td>BMW标准</td><td>VW标准箱</td><td>循环取货</td><td>自定标准</td></tr>
+<tr><td>**交付模式**</td><td>标准</td><td>标准</td><td>JIT/JIS</td><td>JIT看板</td><td>标准</td></tr>
+<tr><td>**审核频率**</td><td>年度</td><td>年度</td><td>年度</td><td>不定期</td><td>年度</td></tr>
+<tr><td>**特色标签**</td><td>-</td><td>数字化</td><td>VDA-4902</td><td>看板</td><td>五星</td></tr>
+</tbody></table>
+<br>
+<p>---</p>
 <br>
 <h2>八、迎接客户审核的通用准备框架</h2>
 <br>
@@ -1526,106 +1952,23 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <br>
 <p>> <strong>黄金法则</strong>：客户审核不是考试，而是验证你是否<strong>说你所做、做你所说</strong>。现场的真实一致性比完美更重要。</p>
 <br>
-  </div>
-</div>
+</section>
 
-<div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
-  <div class="search-results">
-    <div class="search-results-header">
-      <input type="text" id="searchOverlayInput" placeholder="输入关键词搜索..." onkeyup="performSearch()" autofocus>
-      <button onclick="closeSearch()">关闭</button>
-    </div>
-    <div id="searchResultsList"></div>
-  </div>
+  </main>
 </div>
-
-<div class="footer">
-  <p>仓储管理与自动化知识库 · 数据来源: CMR/IATF/VDA/Gartner/IPC · <a href="https://github.com/Kimi1108/warehouse-knowledge-base" target="_blank">GitHub</a></p>
-</div>
-
 <script>
-var currentSection = null;
-var sectionData = {"home": {"title": "首页总览", "icon": "🏠"}, "automation": {"title": "仓储自动化", "icon": "🤖"}, "wms": {"title": "WMS选型", "icon": "💻"}, "best-practices": {"title": "最佳实践", "icon": "📋"}, "industry": {"title": "行业案例", "icon": "🏭"}, "electronic-safety": {"title": "电子料与安全", "icon": "🔌"}, "standards": {"title": "体系标准", "icon": "📐"}, "oem": {"title": "客户审核", "icon": "🚗"}};
-
-function openSection(id, title, icon) {
-  document.getElementById("home-view").style.display = "none";
-  document.querySelectorAll(".detail-panel").forEach(function(p) { p.classList.remove("active"); });
-  var panel = document.getElementById("panel-" + id);
-  if (panel) { panel.classList.add("active"); }
-  currentSection = {id: id, title: title, icon: icon};
-  window.scrollTo(0, 0);
-  history.pushState({section: id}, title, "#" + id);
-}
-
-function goBack() {
-  document.querySelectorAll(".detail-panel").forEach(function(p) { p.classList.remove("active"); });
-  document.getElementById("home-view").style.display = "block";
-  currentSection = null;
-  window.scrollTo(0, 0);
-  history.pushState({}, "", "#");
-}
-
-function goHome() { goBack(); }
-
-function openSearch() {
-  document.getElementById("searchOverlay").classList.add("active");
-  document.getElementById("searchOverlayInput").focus();
-}
-
-function closeSearch() {
-  document.getElementById("searchOverlay").classList.remove("active");
-}
-
-function handleSearchClick(el) {
-  closeSearch();
-  openSection(el.dataset.section, el.dataset.title, el.dataset.icon);
-}
-
-function performSearch() {
-  var q = document.getElementById("searchOverlayInput").value.toLowerCase().trim();
-  var container = document.getElementById("searchResultsList");
-  if (q.length < 2) { container.innerHTML = "<div class=no-results>输入至少2个字符开始搜索</div>"; return; }
-  var results = [];
-  document.querySelectorAll(".detail-panel").forEach(function(panel) {
-    var id = panel.id.replace("panel-", "");
-    var text = panel.innerText;
-    var idx = text.toLowerCase().indexOf(q);
-    if (idx >= 0) {
-      var start = Math.max(0, idx - 30);
-      var end = Math.min(text.length, idx + q.length + 80);
-      var excerpt = (start > 0 ? "..." : "") + text.substring(start, end).replace(/\n/g, " ") + (end < text.length ? "..." : "");
-      results.push({id: id, title: sectionData[id] ? sectionData[id].title : id, icon: sectionData[id] ? sectionData[id].icon : "", excerpt: excerpt});
-    }
-  });
-  if (results.length === 0) {
-    container.innerHTML = "<div class=no-results>未找到内容</div>";
-  } else {
-    container.innerHTML = results.slice(0, 15).map(function(r) {
-      return "<div class=search-result-item data-section=" + r.id + " data-title=" + r.title + " data-icon=" + r.icon + " onclick=handleSearchClick(this)>" +
-        "<h4>" + r.icon + " " + r.title + "</h4><p>" + r.excerpt + "</p></div>";
-    }).join("");
-  }
-}
-
-window.onpopstate = function(e) {
-  if (e.state && e.state.section) {
-    var s = e.state.section;
-    if (sectionData[s]) openSection(s, sectionData[s].title, sectionData[s].icon);
-  } else { goHome(); }
-};
-
-window.addEventListener("load", function() {
-  var hash = window.location.hash.replace("#", "");
-  if (hash && sectionData[hash]) {
-    openSection(hash, sectionData[hash].title, sectionData[hash].icon);
-  }
-});
-
-document.addEventListener("keydown", function(e) {
-  if (e.ctrlKey && e.key === "k") { e.preventDefault(); openSearch(); }
-  if (e.key === "Escape") { closeSearch(); }
-  if (e.ctrlKey && e.key === "h") { e.preventDefault(); goHome(); }
-});
+function showSection(id) {{
+  document.querySelectorAll('.content-section').forEach(function(s) {{ s.classList.remove('active'); }});
+  document.querySelectorAll('.sidebar a').forEach(function(a) {{ a.classList.remove('active'); }});
+  document.getElementById(id).classList.add('active');
+  var link = document.querySelector('a[href="#' + id + '"]');
+  if (link) link.classList.add('active');
+  localStorage.setItem('warehouse-active-section', id);
+}}
+document.addEventListener('DOMContentLoaded', function() {{
+  var saved = localStorage.getItem('warehouse-active-section') || 'home';
+  showSection(saved);
+}});
 </script>
 </body>
 </html>
