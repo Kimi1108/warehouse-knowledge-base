@@ -3,95 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>仓储管理与自动化 · 专业知识库</title>
+<title>仓库管理与仓储自动化 · 知识库</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC",sans-serif;background:#f5f6fa;color:#2d3436;line-height:1.7}
-.topbar{position:sticky;top:0;z-index:1000;background:linear-gradient(135deg,#0c0c30,#1a1a4e);color:#fff;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px;box-shadow:0 2px 12px rgba(0,0,0,0.15)}
-.topbar .logo-area{display:flex;align-items:center;gap:10px;cursor:pointer}
-.topbar .logo-area span{font-size:20px;font-weight:700}
-.topbar .search-area{flex:1;max-width:400px;margin:0 24px}
-.topbar .search-area input{width:100%;padding:8px 16px 8px 36px;border:none;border-radius:20px;font-size:14px;background:rgba(255,255,255,0.15);color:#fff;outline:none;transition:background 0.3s}
-.topbar .search-area input:focus{background:rgba(255,255,255,0.25)}
-.topbar .search-area input::placeholder{color:rgba(255,255,255,0.5)}
-.topbar .top-actions{display:flex;gap:12px}
-.topbar .top-actions a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:6px;transition:all 0.2s}
-.topbar .top-actions a:hover{background:rgba(255,255,255,0.1);color:#fff}
-.hero{background:linear-gradient(135deg,#0c0c30 0%,#1a1a4e 40%,#2d1b69 100%);color:#fff;padding:60px 40px;text-align:center;position:relative;overflow:hidden}
-.hero h1{font-size:36px;margin-bottom:12px;position:relative}
-.hero p{font-size:16px;opacity:0.8;max-width:700px;margin:0 auto 24px;position:relative}
-.hero .stats-row{display:flex;justify-content:center;gap:40px;margin:32px 0;position:relative;flex-wrap:wrap}
-.hero .stat-item{text-align:center}
-.hero .stat-item .num{font-size:36px;font-weight:800;background:linear-gradient(135deg,#a29bfe,#6c5ce7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero .stat-item .lbl{font-size:13px;opacity:0.6}
-.cards-container{max-width:1300px;margin:-40px auto 40px;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:20px;position:relative;z-index:10}
-.card{background:#fff;border-radius:16px;padding:28px;cursor:pointer;transition:all .3s;box-shadow:0 2px 16px rgba(0,0,0,0.06)}
-.card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,0.12)}
-.card .card-icon{font-size:40px;margin-bottom:12px}
-.card h3{font-size:19px;margin-bottom:8px;color:#2d3436}
-.card p{font-size:14px;color:#636e72;line-height:1.6}
-.detail-panel{display:none;max-width:1100px;margin:0 auto;padding:24px}
-.detail-panel.active{display:block}
-.detail-header{margin-bottom:24px}
-.detail-header h1{font-size:26px;color:#1a1a4e}
-.btn-back{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#f0f0f5;border:none;border-radius:8px;cursor:pointer;font-size:14px;color:#636e72;margin-bottom:16px;transition:all .2s}
-.btn-back:hover{background:#e0e0eb;color:#2d3436}
-.detail-body h1{font-size:28px;color:#0c0c30;margin-bottom:16px;border-bottom:3px solid #6c5ce7;padding-bottom:10px}
-.detail-body h2{font-size:22px;color:#1a1a4e;margin:36px 0 12px}
-.detail-body h3{font-size:17px;color:#444;margin:24px 0 8px}
-.detail-body table{width:100%;border-collapse:collapse;margin:16px 0;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.06);display:block;overflow-x:auto}
-.detail-body th{background:#1a1a4e;color:#fff;padding:10px 14px;text-align:left;font-size:13px;font-weight:600;white-space:nowrap}
-.detail-body td{padding:10px 14px;border-bottom:1px solid #eef0f3;font-size:14px}
-.detail-body tr:last-child td{border-bottom:none}
-.detail-body tr:hover td{background:#f8f9ff}
-.detail-body p{margin:10px 0;font-size:15px}
-.detail-body li{margin:4px 0 4px 20px;font-size:14px}
-.detail-body code{background:#f0f0f5;padding:2px 6px;border-radius:4px;font-size:13px;color:#6c5ce7}
-.detail-body pre{background:#1a1a2e;color:#e0e0e0;padding:16px;border-radius:8px;overflow-x:auto;margin:12px 0;font-size:13px}
-.detail-body pre code{background:none;color:inherit;padding:0}
-.detail-body strong{color:#6c5ce7}
-.search-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2000;align-items:center;justify-content:center}
-.search-overlay.active{display:flex}
-.search-results{background:#fff;width:90%;max-width:600px;max-height:70vh;border-radius:16px;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.2)}
-.search-results-header{padding:20px;border-bottom:1px solid #eee;display:flex;gap:12px}
-.search-results-header input{flex:1;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:15px;outline:none}
-.search-results-header input:focus{border-color:#6c5ce7}
-.search-results-header button{padding:10px 20px;background:#6c5ce7;color:#fff;border:none;border-radius:8px;cursor:pointer}
-.search-result-item{padding:14px 20px;border-bottom:1px solid #f0f0f0;cursor:pointer;transition:background .2s}
-.search-result-item:hover{background:#f8f9ff}
-.search-result-item h4{font-size:14px;color:#1a1a4e}
-.search-result-item p{font-size:12px;color:#888;margin-top:2px}
-.no-results{padding:40px;text-align:center;color:#888}
-.flow-step{padding:14px 20px;background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;border-radius:10px;font-size:14px;font-weight:600;text-align:center}
-.footer{text-align:center;padding:40px 20px;color:#b2bec3;font-size:13px}
-.footer a{color:#6c5ce7}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.card{animation:fadeIn .5s ease both}
-.card:nth-child(1){animation-delay:.05s}.card:nth-child(2){animation-delay:.10s}.card:nth-child(3){animation-delay:.15s}.card:nth-child(4){animation-delay:.20s}.card:nth-child(5){animation-delay:.25s}.card:nth-child(6){animation-delay:.30s}.card:nth-child(7){animation-delay:.35s}
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:#f0f0f0}
-::-webkit-scrollbar-thumb{background:#b2bec3;border-radius:3px}
-@media(max-width:768px){.hero{padding:40px 20px}.hero h1{font-size:24px}.hero .stats-row{gap:20px}.hero .stat-item .num{font-size:24px}.cards-container{grid-template-columns:1fr;padding:0 16px}.detail-panel{padding:16px}.topbar .search-area{display:none}}
+* {{ margin: 0; padding: 0; box-sizing: border-box; }}
+body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif; background: #f0f2f5; color: #1a1a2e; line-height: 1.7; }}
+.container {{ display: flex; min-height: 100vh; }}
+.sidebar {{ width: 260px; background: linear-gradient(180deg, #0f0c29, #302b63, #24243e); color: #fff; padding: 24px 0; position: fixed; height: 100vh; overflow-y: auto; z-index: 100; }}
+.sidebar .logo {{ padding: 0 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 16px; }}
+.sidebar .logo h2 {{ font-size: 18px; font-weight: 700; }}
+.sidebar .logo p {{ font-size: 12px; opacity: 0.6; margin-top: 4px; }}
+.sidebar nav ul {{ list-style: none; padding: 0 12px; }}
+.sidebar nav ul li {{ margin-bottom: 2px; }}
+.sidebar nav ul li a {{ display: block; padding: 10px 12px; color: rgba(255,255,255,0.75); text-decoration: none; border-radius: 8px; font-size: 14px; transition: all 0.2s; }}
+.sidebar nav ul li a:hover, .sidebar nav ul li a.active {{ background: rgba(255,255,255,0.12); color: #fff; }}
+.main {{ margin-left: 260px; flex: 1; padding: 32px 40px; max-width: 1100px; }}
+.content-section {{ display: none; }}
+.content-section.active {{ display: block; }}
+
+h1 {{ font-size: 28px; color: #0f0c29; margin-bottom: 16px; border-bottom: 3px solid #302b63; padding-bottom: 10px; }}
+h2 {{ font-size: 22px; color: #302b63; margin: 32px 0 12px; }}
+h3 {{ font-size: 17px; color: #444; margin: 24px 0 8px; }}
+
+table {{ width: 100%; border-collapse: collapse; margin: 16px 0; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }}
+th {{ background: #302b63; color: #fff; padding: 10px 14px; text-align: left; font-size: 13px; font-weight: 600; }}
+td {{ padding: 10px 14px; border-bottom: 1px solid #eef0f3; font-size: 14px; }}
+tr:last-child td {{ border-bottom: none; }}
+tr:hover td {{ background: #f8f9ff; }}
+
+p {{ margin: 8px 0; font-size: 15px; }}
+li {{ margin: 4px 0 4px 20px; font-size: 14px; }}
+
+code {{ background: #f0f0f5; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #302b63; }}
+pre {{ background: #1a1a2e; color: #e0e0e0; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; font-size: 13px; }}
+pre code {{ background: none; color: inherit; padding: 0; }}
+
+strong {{ color: #302b63; }}
+
+@media (max-width: 768px) {{
+  .sidebar {{ width: 100%; height: auto; position: relative; }}
+  .main {{ margin-left: 0; padding: 20px; }}
+  .container {{ flex-direction: column; }}
+}}
 </style>
 </head>
 <body>
-<div class="topbar"><div class="logo-area" onclick="goHome()"><span>📦 仓储知识库</span></div><div class="search-area"><input type="text" placeholder="🔍 搜索知识点..." id="searchInput" onkeydown="if(event.key==='Enter')openSearch()"></div><div class="top-actions"><a href="#" onclick="openSearch()">🔍 搜索</a><a href="https://github.com/Kimi1108/warehouse-knowledge-base" target="_blank">📦 GitHub</a></div></div>
-<div id="home-view" class="home-view active">
-<div class="hero"><h1>📦 仓库管理与仓储自动化</h1><p>一站式专业知识库 — 覆盖自动化技术、WMS选型、电子料管理、安全规范、体系标准及全球汽车客户审核</p><div class="stats-row"><div class="stat-item"><div class="num">8</div><div class="lbl">知识板块</div></div><div class="stat-item"><div class="num">7</div><div class="lbl">专业文档</div></div><div class="stat-item"><div class="num">550亿+</div><div class="lbl">2026年市场规模</div></div><div class="stat-item"><div class="num">38万+</div><div class="lbl">预计AMR出货</div></div></div></div>
-<div class="cards-container"><div class="card" onclick="openSection('automation','仓储自动化','🤖')" style="border-top:4px solid #e17055"><div class="card-icon">🤖</div><h3>仓储自动化</h3><p>AGV/AMR/复合机器人/ASRS/数字孪生/厂商速查</p></div><div class="card" onclick="openSection('wms','WMS选型','💻')" style="border-top:4px solid #0984e3"><div class="card-icon">💻</div><h3>WMS选型</h3><p>10款主流产品对比、集成架构、实施方法、ROI分析</p></div><div class="card" onclick="openSection('best-practices','最佳实践','📋')" style="border-top:4px solid #00b894"><div class="card-icon">📋</div><h3>最佳实践</h3><p>Lean/5S/6S、仓库布局设计、拣选策略、KPI仪表盘</p></div><div class="card" onclick="openSection('industry','行业案例','🏭')" style="border-top:4px solid #fdcb6e"><div class="card-icon">🏭</div><h3>行业案例</h3><p>电商/制造/医药/冷链/新能源/化工仓储方案</p></div><div class="card" onclick="openSection('electronic-safety','电子料与安全','🔌')" style="border-top:4px solid #00cec9"><div class="card-icon">🔌</div><h3>电子料与安全</h3><p>MSD湿敏管理/ESD静电防护/危化品仓储安全</p></div><div class="card" onclick="openSection('standards','体系标准','📐')" style="border-top:4px solid #e84393"><div class="card-icon">📐</div><h3>体系标准</h3><p>IATF 16949/VDA 6.3/ISO 45001/ISO 27001 仓储审核</p></div><div class="card" onclick="openSection('oem','客户审核','🚗')" style="border-top:4px solid #636e72"><div class="card-icon">🚗</div><h3>客户审核</h3><p>奔驰/宝马/大众/丰田/现代 供应商物流审核要求</p></div></div>
-<div style="max-width:1100px;margin:0 auto 40px;padding:0 24px;"><h2 style="text-align:center;margin-bottom:20px;color:#1a1a4e">📐 智慧仓储三层架构</h2>
-<div style="text-align:center">
-<div style="font-size:18px;padding:16px 20px;border-radius:10px;background:#dfe6e9;color:#636e72;border:2px dashed #b2bec3">🎯 感知层</div>
-<div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:10px 0"><span class="flow-step" style="background:#b2bec3;font-size:12px;padding:8px 14px">RFID</span><span class="flow-step" style="background:#b2bec3;font-size:12px;padding:8px 14px">条码/二维码</span><span class="flow-step" style="background:#b2bec3;font-size:12px;padding:8px 14px">温湿度传感器</span><span class="flow-step" style="background:#b2bec3;font-size:12px;padding:8px 14px">3D视觉</span><span class="flow-step" style="background:#b2bec3;font-size:12px;padding:8px 14px">LiDAR</span></div>
-<div style="text-align:center;font-size:20px;color:#b2bec3;margin:4px 0">⬇</div>
-<div style="font-size:18px;padding:16px 20px;border-radius:10px;background:#6c5ce7;color:#fff">🧠 决策层</div>
-<div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:10px 0"><span class="flow-step" style="font-size:12px;padding:8px 14px">WMS</span><span class="flow-step" style="font-size:12px;padding:8px 14px">WCS</span><span class="flow-step" style="font-size:12px;padding:8px 14px">AI调度</span><span class="flow-step" style="font-size:12px;padding:8px 14px">数字孪生</span></div>
-<div style="text-align:center;font-size:20px;color:#b2bec3;margin:4px 0">⬇</div>
-<div style="font-size:18px;padding:16px 20px;border-radius:10px;background:#e17055;color:#fff">⚡ 执行层</div>
-<div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:10px 0"><span class="flow-step" style="background:#e17055;font-size:12px;padding:8px 14px">AGV/AMR</span><span class="flow-step" style="background:#e17055;font-size:12px;padding:8px 14px">堆垛机</span><span class="flow-step" style="background:#e17055;font-size:12px;padding:8px 14px">穿梭车</span><span class="flow-step" style="background:#e17055;font-size:12px;padding:8px 14px">分拣机</span><span class="flow-step" style="background:#e17055;font-size:12px;padding:8px 14px">复合机器人</span></div>
-</div></div>
-</div>
-<div id="panel-home" class="detail-panel"><div class="detail-header"><button class="btn-back" onclick="goBack()">← 返回首页</button><h1>🏠 首页总览</h1></div><div class="detail-body"><br>
+<div class="container">
+  <aside class="sidebar">
+    <div class="logo">
+      <h2>📦 仓储知识库</h2>
+      <p>Warehouse Knowledge Base</p>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home" onclick="showSection('home')">🏠 首页总览</a></li>
+<li><a href="#automation" onclick="showSection('automation')">🤖 仓储自动化</a></li>
+<li><a href="#wms" onclick="showSection('wms')">💻 WMS选型</a></li>
+<li><a href="#best-practices" onclick="showSection('best-practices')">📋 最佳实践</a></li>
+<li><a href="#industry" onclick="showSection('industry')">🏭 行业案例</a></li>
+<li><a href="#electronic-safety" onclick="showSection('electronic-safety')">🔌 电子料与安全</a></li>
+<li><a href="#equipment-maintenance" onclick="showSection('equipment-maintenance')">🔧 设备维护保养</a></li>
+<li><a href="#standards" onclick="showSection('standards')">📐 体系标准</a></li>
+<li><a href="#oem" onclick="showSection('oem')">🚗 客户审核</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <main class="main">
+    <section id="home" class="content-section">
+<br>
 <h1>仓库管理与仓储自动化专家</h1>
 <br>
 <h2>概述</h2>
@@ -151,7 +129,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 <li>❌ "智慧仓储只适合大企业" → ✅ 模块化设计可适配中小企业，降低门槛</li>
 <li>❌ "AGV会被AMR完全替代" → ✅ 两者互补，AGV在固定路线高频搬运中仍有成本优势</li>
 <li>❌ "建设周期长、运维难" → ✅ 成熟服务商可快速交付，数字孪生技术实现远程运维</li>
-<br></div></div><div id="panel-automation" class="detail-panel"><div class="detail-header"><button class="btn-back" onclick="goBack()">← 返回首页</button><h1>🤖 仓储自动化</h1></div><div class="detail-body"><h1>仓储自动化设备与技术（2026年版）</h1>
+<br>
+</section>
+<section id="automation" class="content-section">
+<h1>仓储自动化设备与技术（2026年版）</h1>
 <br>
 <h2>一、AGV/AMR/复合机器人对比</h2>
 <br>
@@ -361,7 +342,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 <h3>6. 数据价值变现</h3>
 <li>AMR运行数据用于生产流程优化、预测性维护</li>
 <li>企业收入结构从硬件销售向数据服务倾斜</li>
-<br></div></div><div id="panel-wms" class="detail-panel"><div class="detail-header"><button class="btn-back" onclick="goBack()">← 返回首页</button><h1>💻 WMS选型</h1></div><div class="detail-body"><h1>仓库管理系统（WMS）选型指南（2026年版）</h1>
+<br>
+</section>
+<section id="wms" class="content-section">
+<h1>仓库管理系统（WMS）选型指南（2026年版）</h1>
 <br>
 <h2>一、WMS选型核心维度</h2>
 <br>
@@ -521,7 +505,10 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <li>WMS技术方向：深度集成、AI驱动、云原生</li>
 <li>中国WMS市场：品牌众多，分化明显</li>
 <li>头部厂商（按市场活跃度）：富勒(FLUX)、用友、弘人C-WMS、唯智、科箭</li>
-<br></div></div><div id="panel-best-practices" class="detail-panel"><div class="detail-header"><button class="btn-back" onclick="goBack()">← 返回首页</button><h1>📋 最佳实践</h1></div><div class="detail-body"><h1>仓库管理最佳实践</h1>
+<br>
+</section>
+<section id="best-practices" class="content-section">
+<h1>仓库管理最佳实践</h1>
 <br>
 <h2>一、仓库布局设计</h2>
 <br>
@@ -720,7 +707,10 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <tr><td>货损率</td><td><0.1%</td></tr>
 <tr><td>客户投诉率</td><td><0.5%</td></tr>
 </tbody></table>
-<br></div></div><div id="panel-industry" class="detail-panel"><div class="detail-header"><button class="btn-back" onclick="goBack()">← 返回首页</button><h1>🏭 行业案例</h1></div><div class="detail-body"><h1>仓储自动化行业应用案例</h1>
+<br>
+</section>
+<section id="industry" class="content-section">
+<h1>仓储自动化行业应用案例</h1>
 <br>
 <h2>一、电商物流仓储</h2>
 <br>
@@ -953,11 +943,14 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 (RFID/条码/传感器) → (WMS/WCS/AI) → (AGV/AMR/堆垛机/穿梭车/分拣机)</code></pre>
 <br>
 <p><strong>核心理念</strong>："数字大脑驱动物理执行"——软件系统作为决策中枢，硬件设备作为执行肢体，物联网技术作为信息纽带。</p>
-<br></div></div><div id="panel-electronic-safety" class="detail-panel"><div class="detail-header"><button class="btn-back" onclick="goBack()">← 返回首页</button><h1>🔌 电子料与安全</h1></div><div class="detail-body"><h1>电子料管理、仓库安全与危化品存储</h1>
+<br>
+</section>
+<section id="electronic-safety" class="content-section">
+<h1>电子料管理、仓库安全与危化品存储</h1>
 <br>
 <p>本参考文档涵盖三大专业领域：湿敏元件（MSD）管理、ESD静电防护、危险化学品仓储安全。</p>
 <br>
-<hr class="section-divider">
+<p><hr class="section-divider"></p>
 <br>
 <h2>一、湿敏元件（MSD）管理</h2>
 <br>
@@ -1042,7 +1035,7 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 - "MSL 3的168小时是怎么跟踪的？系统还是人工？"
 - "烘烤记录在哪里？烘烤后是否重新贴了开封标签？"</code></pre>
 <br>
-<hr class="section-divider">
+<p><hr class="section-divider"></p>
 <br>
 <h2>二、ESD 静电防护</h2>
 <br>
@@ -1121,7 +1114,7 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 - "这个防静电袋是全封闭的吗？有没有破洞？"
 - "包装上是否有 ESD 警示标识？"</code></pre>
 <br>
-<hr class="section-divider">
+<p><hr class="section-divider"></p>
 <br>
 <h2>三、危险化学品仓储安全</h2>
 <br>
@@ -1227,7 +1220,7 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 - "剧毒品的双人双锁执行情况？"
 - "温湿度记录为什么有中断？"</code></pre>
 <br>
-<hr class="section-divider">
+<p><hr class="section-divider"></p>
 <br>
 <h2>四、仓库综合安全检查清单</h2>
 <br>
@@ -1268,7 +1261,7 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <tr><td>工伤记录</td><td>及时报告+调查+整改</td></tr>
 </tbody></table>
 <br>
-<hr class="section-divider">
+<p><hr class="section-divider"></p>
 <br>
 <h2>五、关键数据速查卡</h2>
 <br>
@@ -1286,7 +1279,389 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <tr><td>货架检查频率</td><td>每季度</td></tr>
 <tr><td>MSDS更新要求</td><td>每5年或有变更时</td></tr>
 </tbody></table>
-<br></div></div><div id="panel-standards" class="detail-panel"><div class="detail-header"><button class="btn-back" onclick="goBack()">← 返回首页</button><h1>📐 体系标准</h1></div><div class="detail-body"><h1>体系标准与仓库管理审核要求</h1>
+<br>
+</section>
+<section id="equipment-maintenance" class="content-section">
+<h1>仓储设备维护保养指南</h1>
+<br>
+<p>本文档涵盖仓储领域四大类设备的全生命周期维护保养知识：AGV/AMR、特种设备（叉车/堆垛机/货梯）、智能仓储设备（穿梭车/分拣机/立体库）、以及 TPM 管理体系。</p>
+<br>
+<p>---</p>
+<br>
+<h2>一、AGV/AMR 维护保养</h2>
+<br>
+<h3>1. 维护周期总览</h3>
+<br>
+<table>
+<thead><tr><th>周期</th><th>耗时/台</th><th>执行人</th><th>核心内容</th></tr></thead>
+<tbody>
+<tr><td>**日检**</td><td>10-15分钟</td><td>操作员</td><td>外观、传感器窗口、急停、电池SOC、故障日志</td></tr>
+<tr><td>**周检**</td><td>30-45分钟</td><td>技术员</td><td>电池深度检测、传感器校准、安全区域测试</td></tr>
+<tr><td>**月检**</td><td>60-90分钟</td><td>工程师</td><td>驱动系统、电气连接、电池容量趋势、参数备份</td></tr>
+<tr><td>**季检**</td><td>2-4小时</td><td>工程师</td><td>完整电池容量测试、导航地图验证、安全系统认证</td></tr>
+<tr><td>**年检**</td><td>4-8小时</td><td>厂商/工程师</td><td>全面机械检修、整机性能评估、大修计划</td></tr>
+</tbody></table>
+<br>
+<h3>2. 日检清单</h3>
+<br>
+<table>
+<thead><tr><th>检查项</th><th>标准</th><th>异常处理</th></tr></thead>
+<tbody>
+<tr><td>**外观物理**</td><td>无裂缝、撞击痕迹</td><td>记录损伤，评估后决定是否部署</td></tr>
+<tr><td>**驱动轮/万向轮**</td><td>无可见磨损、扁平点、卡入碎屑</td><td>清理碎屑，磨损超标则更换</td></tr>
+<tr><td>**传感器窗口**</td><td>LiDAR/摄像头/超声波无尘、无污渍</td><td>专用镜头布清洁</td></tr>
+<tr><td>**保险杠传感器**</td><td>手动按压后机器人立即停止</td><td>失效则停用，报修</td></tr>
+<tr><td>**急停按钮**</td><td>按下完全停机，释放正常重启</td><td>任何异常禁止部署</td></tr>
+<tr><td>**电池SOC**</td><td>>20%</td><td>低于20%充电后再部署</td></tr>
+<tr><td>**充电触点**</td><td>清洁、完全接触、无腐蚀</td><td>干布清洁</td></tr>
+<tr><td>**车队软件**</td><td>设备在线、通讯正常</td><td>离线不部署</td></tr>
+<tr><td>**故障日志**</td><td>查看夜故障记录</td><td>上报未解决错误码</td></tr>
+<tr><td>**导航地图版本**</td><td>与设施地图一致</td><td>版本不匹配不部署</td></tr>
+</tbody></table>
+<br>
+<h3>3. 周检清单</h3>
+<br>
+<table>
+<thead><tr><th>检查项</th><th>操作标准</th></tr></thead>
+<tbody>
+<tr><td>**电池电压**</td><td>记录静置和负载电压，对比基准值</td></tr>
+<tr><td>**电池外观**</td><td>检查有无鼓胀、泄漏、端子变色</td></tr>
+<tr><td>**充电站输出**</td><td>验证电压/电流符合OEM规格</td></tr>
+<tr><td>**LiDAR清洁**</td><td>用厂商认可镜头布清洁（禁止仅用压缩空气）</td></tr>
+<tr><td>**传感器自检**</td><td>运行车载诊断，确认所有区域在容差内</td></tr>
+<tr><td>**WiFi信号**</td><td>检查所有操作区域信号强度，标记盲区</td></tr>
+<tr><td>**驱动轮胎纹**</td><td>检查是否低于最小规格</td></tr>
+<tr><td>**安全区域测试**</td><td>步行携带物体穿过减速区/停止区/紧急区测试</td></tr>
+<tr><td>**紧固件**</td><td>检查外部紧固件和面板盖</td></tr>
+</tbody></table>
+<br>
+<h3>4. 月检清单</h3>
+<br>
+<table>
+<thead><tr><th>检查项</th><th>标准</th></tr></thead>
+<tbody>
+<tr><td>**驱动轮直径**</td><td>四点测量，偏差<2mm</td></tr>
+<tr><td>**轮毂螺栓**</td><td>按OEM扭矩交叉拧紧</td></tr>
+<tr><td>**万向轮轴承**</td><td>转动顺畅、无横向游隙</td></tr>
+<tr><td>**润滑**</td><td>按OEM指定润滑剂类型和用量</td></tr>
+<tr><td>**制动保持测试**</td><td>额定负载下手动推动，确认无移动</td></tr>
+<tr><td>**负载平台**</td><td>检查变形、紧固件、物料堆积</td></tr>
+<tr><td>**线束/连接器**</td><td>检查磨损、扭结、腐蚀</td></tr>
+<tr><td>**位置精度**</td><td>对已知参考点验证</td></tr>
+<tr><td>**接地连续性**</td><td>底盘-电机-电池系统</td></tr>
+<tr><td>**电池容量趋势**</td><td>记录容量，<原始80%列入更换计划</td></tr>
+<tr><td>**参数备份**</td><td>备份到外部存储并验证完整性</td></tr>
+</tbody></table>
+<br>
+<h3>5. 季检清单</h3>
+<br>
+<table>
+<thead><tr><th>检查项</th><th>标准</th></tr></thead>
+<tbody>
+<tr><td>**电池容量测试**</td><td>受控负载放电至最低SOC，测量实际vs额定容量</td></tr>
+<tr><td>**BMS日志**</td><td>电芯级电压：单个偏离均值>50mV表明退化</td></tr>
+<tr><td>**热管理**</td><td>冷却风扇/导热垫功能，满充温度在OEM范围内</td></tr>
+<tr><td>**导航地图验证**</td><td>行驶每条路线段，确认位置精度</td></tr>
+<tr><td>**软件更新**</td><td>**严禁直接对生产车队应用**，先在测试环境单台验证</td></tr>
+<tr><td>**路线效率审核**</td><td>对比实际周期与基准，识别性能下降</td></tr>
+<tr><td>**安全认证**</td><td>根据ANSI/RIA R15.08或ISO 3691-4完整验证</td></tr>
+<tr><td>**急停链测试**</td><td>单台E-stop触发正确全车队响应</td></tr>
+<tr><td>**风险评估更新**</td><td>布局/负载/区域变化时审查</td></tr>
+</tbody></table>
+<br>
+<h3>6. AMR vs AGV 维护差异</h3>
+<br>
+<table>
+<thead><tr><th>维护领域</th><th>AMR</th><th>AGV</th></tr></thead>
+<tbody>
+<tr><td>**导航系统**</td><td>LiDAR校准、SLAM地图、摄像头清洁——传感器决定一切</td><td>磁条/导引线状态、地面标记——物理路径基础设施</td></tr>
+<tr><td>**维护频率侧重**</td><td>传感器维护更频繁：每周清洁LiDAR；物理接触后必须重校准</td><td>基础设施维护更频繁：每月检查磁条/导引线</td></tr>
+<tr><td>**电池需求**</td><td>更高计算负载，优先LiFePO4+机会充电</td><td>固定路线能耗可预测，铅酸电池可用</td></tr>
+<tr><td>**关键故障模式**</td><td>传感器漂移→位置误差</td><td>路径基础设施损坏→全车队导航失效</td></tr>
+<tr><td>**软件管理**</td><td>车队软件+地图版本全车队匹配</td><td>路线编程需验证物理基础设施变更</td></tr>
+</tbody></table>
+<br>
+<h3>7. 电池管理核心</h3>
+<br>
+<table>
+<thead><tr><th>SOC区间</th><th>状态</th><th>措施</th></tr></thead>
+<tbody>
+<tr><td>>80%</td><td>正常使用</td><td>适合满班次部署</td></tr>
+<tr><td>20-80%</td><td>充电窗口</td><td>空闲时返回充电站</td></tr>
+<tr><td>15-20%</td><td>立即充电</td><td>立即退出运行</td></tr>
+<tr><td><15%</td><td>严禁部署</td><td>深度放电加速电芯退化</td></tr>
+</tbody></table>
+<br>
+<table>
+<thead><tr><th>容量状态</th><th>措施</th></tr></thead>
+<tbody>
+<tr><td>90-100%</td><td>优秀——继续定期PM</td></tr>
+<tr><td>80-90%</td><td>良好——每季度监测</td></tr>
+<tr><td>70-80%</td><td>标记——制定更换计划</td></tr>
+<tr><td><70%</td><td>更换——运行可靠性风险</td></tr>
+</tbody></table>
+<br>
+<p>---</p>
+<br>
+<h2>二、特种设备维护保养</h2>
+<br>
+<h3>1. 适用法规标准</h3>
+<br>
+<table>
+<thead><tr><th>法规/标准</th><th>适用范围</th></tr></thead>
+<tbody>
+<tr><td>**《特种设备安全法》**</td><td>所有特种设备</td></tr>
+<tr><td>**TSG 81-2022**</td><td>场(厂)内专用机动车辆安全技术规程（叉车）</td></tr>
+<tr><td>**TSG N0001-2017**</td><td>场(厂)内专用机动车辆安全技术监察规程</td></tr>
+<tr><td>**GB/T 16178-2011**</td><td>场(厂)内机动车辆安全检验技术要求</td></tr>
+<tr><td>**《特种设备使用管理规则》**</td><td>使用登记、定期检验、台账管理</td></tr>
+</tbody></table>
+<br>
+<h3>2. 叉车维护保养</h3>
+<br>
+<p>#### 日检（每班前）</p>
+<br>
+<table>
+<thead><tr><th>检查项</th><th>标准</th></tr></thead>
+<tbody>
+<tr><td>**轮胎**</td><td>气压正常（充气胎）/无过度磨损（实心胎）</td></tr>
+<tr><td>**灯光/喇叭**</td><td>前灯、尾灯、转向灯、倒车蜂鸣全部正常</td></tr>
+<tr><td>**制动系统**</td><td>行车制动+驻车制动有效</td></tr>
+<tr><td>**液压系统**</td><td>无泄漏，起升/倾斜动作顺畅</td></tr>
+<tr><td>**门架/货叉**</td><td>无裂纹、变形，货叉定位销完好</td></tr>
+<tr><td>**链条**</td><td>张紧度合适，无过度拉伸</td></tr>
+<tr><td>**仪表**</td><td>电量表/油位表/小时计正常</td></tr>
+<tr><td>**安全带**</td><td>完好可用</td></tr>
+<tr><td>**操作手柄**</td><td>各方向动作正常，自动回中</td></tr>
+</tbody></table>
+<br>
+<p>#### 周检</p>
+<br>
+<table>
+<thead><tr><th>检查项</th><th>操作</th></tr></thead>
+<tbody>
+<tr><td>**液压油位**</td><td>检查并补充</td></tr>
+<tr><td>**电池（电动叉车）**</td><td>检查电解液液位、清洁电池表面、检查连接线</td></tr>
+<tr><td>**门架轴承**</td><td>检查磨损，加注润滑脂</td></tr>
+<tr><td>**链条润滑**</td><td>喷涂链条润滑油</td></tr>
+<tr><td>**转向系统**</td><td>检查转向间隙、横直拉杆</td></tr>
+</tbody></table>
+<br>
+<p>#### 月检</p>
+<br>
+<table>
+<thead><tr><th>检查项</th><th>操作</th></tr></thead>
+<tbody>
+<tr><td>**制动片/制动鼓**</td><td>检查磨损量</td></tr>
+<tr><td>**轮毂轴承**</td><td>检查间隙，加注润滑脂</td></tr>
+<tr><td>**液压油管**</td><td>检查老化、龟裂</td></tr>
+<tr><td>**电机/电控（电动）**</td><td>检查碳刷、清洁控制器的灰尘</td></tr>
+<tr><td>**发动机（内燃）**</td><td>更换机油、检查皮带、清洁空滤</td></tr>
+</tbody></table>
+<br>
+<p>#### 年检（法定）</p>
+<br>
+<table>
+<thead><tr><th>项目</th><th>要求</th></tr></thead>
+<tbody>
+<tr><td>**法定检验**</td><td>每年一次，由特种设备检验机构执行</td></tr>
+<tr><td>**检验内容**</td><td>整车性能、安全装置、制动距离、门架强度等</td></tr>
+<tr><td>**检验标志**</td><td>合格后粘贴"特种设备使用标志"</td></tr>
+<tr><td>**有效期**</td><td>下次检验日期前有效，超期禁止使用</td></tr>
+</tbody></table>
+<br>
+<p>#### 叉车维护安全守则</p>
+<br>
+<li>维护前必须<strong>关闭电源/熄火 + 拔钥匙 + 放置止轮块</strong></li>
+<li>顶升车辆时使用<strong>额定承重的千斤顶+安全支架</strong></li>
+<li>更换轮胎时使用专业工具，严禁无防护操作</li>
+<li>电动叉车电池充电区必须<strong>通风良好、远离火源</strong></li>
+<br>
+<h3>3. 堆垛机维护保养</h3>
+<br>
+<table>
+<thead><tr><th>周期</th><th>维护内容</th></tr></thead>
+<tbody>
+<tr><td>**日检**</td><td>运行异响、货叉动作、光电开关状态、急停功能</td></tr>
+<tr><td>**周检**</td><td>清洁轨道、检查天轨地轨导轮、条码扫描头清洁</td></tr>
+<tr><td>**月检**</td><td>升降/运行/货叉电机制动检查、链条张紧、限位开关</td></tr>
+<tr><td>**季检**</td><td>所有光电开关检测、导向轮间隙、输送机对齐</td></tr>
+<tr><td>**半年**</td><td>减速箱润滑油更换、钢丝绳磨损检查、集电器检查</td></tr>
+<tr><td>**年检**</td><td>立柱垂直度测量、全部螺栓紧固、电机绝缘检测、大修评估</td></tr>
+</tbody></table>
+<br>
+<h3>4. 货梯/升降平台</h3>
+<br>
+<li><strong>法定检验</strong>：每年一次定期检验</li>
+<li><strong>日检</strong>：层门联锁、急停、平层精度、异响</li>
+<li><strong>月检</strong>：导轨润滑、门锁触点清洁、限速器检查</li>
+<li><strong>维护安全</strong>：进入轿顶/底坑必须执行挂牌锁定(LOTO)</li>
+<br>
+<p>---</p>
+<br>
+<h2>三、智能仓储设备维护</h2>
+<br>
+<h3>1. 四向穿梭车</h3>
+<br>
+<table>
+<thead><tr><th>周期</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>**日检**</td><td>电池电量、运行异响、通讯状态、充电触点清洁</td></tr>
+<tr><td>**周检**</td><td>行走轮磨损检查、传感器清洁、轨道异物检查</td></tr>
+<tr><td>**月检**</td><td>顶升机构润滑、电池容量检测、行走定位精度</td></tr>
+<tr><td>**季检**</td><td>行走电机碳刷检查、轨道磨损检测、安全装置测试</td></tr>
+<tr><td>**年检**</td><td>全面检修、电池包更换评估、轨道平直度测量</td></tr>
+</tbody></table>
+<br>
+<h3>2. 输送分拣系统</h3>
+<br>
+<table>
+<thead><tr><th>周期</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>**日检**</td><td>输送带跑偏检查、异响、光电开关状态、急停测试</td></tr>
+<tr><td>**周检**</td><td>滚筒/轴承润滑、电机温度检查、带面清洁</td></tr>
+<tr><td>**月检**</td><td>链条张紧+润滑、减速箱油位、联轴器检查</td></tr>
+<tr><td>**季检**</td><td>电机绝缘检测、变频器清洁、皮带磨损更换</td></tr>
+<tr><td>**年检**</td><td>全线拆卸检修、轴承更换、电气柜全面清洁</td></tr>
+</tbody></table>
+<br>
+<h3>3. 自动化立体库（AS/RS）</h3>
+<br>
+<table>
+<thead><tr><th>周期</th><th>核心内容</th></tr></thead>
+<tbody>
+<tr><td>**季检（A级）**</td><td>全部光电开关、导向轮、货叉链条张紧、限位/换速开关、条码扫描头、输送机对齐检测</td></tr>
+<tr><td>**年检（B级）**</td><td>载货台水平、全部导向轮轴承、三台电机固定+制动、立柱垂直度、天轨地轨螺栓、钢丝绳磨损、滑触线接头、电气柜全面紧固、电机绝缘</td></tr>
+</tbody></table>
+<br>
+<h3>4. 关键部件寿命参考</h3>
+<br>
+<table>
+<thead><tr><th>部件</th><th>参考寿命</th><th>更换判断</th></tr></thead>
+<tbody>
+<tr><td>AGV驱动轮</td><td>1-2年</td><td>胎纹磨平或直径偏差>2mm</td></tr>
+<tr><td>AGV锂电池</td><td>3-5年</td><td>容量<原始80%</td></tr>
+<tr><td>堆垛机钢丝绳</td><td>2-3年</td><td>断丝>10%或直径减少>7%</td></tr>
+<tr><td>叉车轮胎（实心）</td><td>1-2年</td><td>磨损到安全线</td></tr>
+<tr><td>穿梭车电池</td><td>2-3年</td><td>容量<原始80%</td></tr>
+<tr><td>输送带</td><td>2-5年</td><td>磨损/开裂/跑偏不可调</td></tr>
+<tr><td>轴承</td><td>3-5年</td><td>异响/间隙过大/温度异常</td></tr>
+</tbody></table>
+<br>
+<p>---</p>
+<br>
+<h2>四、设备维护管理体系</h2>
+<br>
+<h3>1. TPM（全员生产维护）八大支柱</h3>
+<br>
+<table>
+<thead><tr><th>支柱</th><th>仓储应用</th></tr></thead>
+<tbody>
+<tr><td>**自主维护**</td><td>操作员日检（清洁/润滑/紧固/检查）</td></tr>
+<tr><td>**计划维护**</td><td>按周期预防性维护计划</td></tr>
+<tr><td>**质量维护**</td><td>设备精度与运行质量关联分析</td></tr>
+<tr><td>**早期设备管理**</td><td>新设备选型时考虑可维护性</td></tr>
+<tr><td>**教育培训**</td><td>维护技能培训+多能工培养</td></tr>
+<tr><td>**安全健康环境**</td><td>设备安全防护+LOTO程序</td></tr>
+<tr><td>**行政支持**</td><td>备件管理、维护预算</td></tr>
+<tr><td>**焦点改善**</td><td>设备OEE提升专项</td></tr>
+</tbody></table>
+<br>
+<h3>2. 维护策略对比</h3>
+<br>
+<table>
+<thead><tr><th>策略</th><th>方式</th><th>适用</th><th>优势</th><th>劣势</th></tr></thead>
+<tbody>
+<tr><td>**事后维修**</td><td>坏了再修</td><td>非关键设备</td><td>成本最低</td><td>生产中断风险大</td></tr>
+<tr><td>**预防性维护**</td><td>按周期计划</td><td>关键设备</td><td>减少非计划停机</td><td>可能过度维护</td></tr>
+<tr><td>**状态维护**</td><td>基于监测数据</td><td>高价值设备</td><td>精准、高效</td><td>需要监测系统</td></tr>
+<tr><td>**预测性维护**</td><td>AI+数据分析预测</td><td>智能化程度高的设备</td><td>最优成本</td><td>实现门槛高</td></tr>
+</tbody></table>
+<br>
+<h3>3. 设备 OEE 核心指标</h3>
+<br>
+<table>
+<thead><tr><th>指标</th><th>公式</th><th>目标</th></tr></thead>
+<tbody>
+<tr><td>**时间开动率**</td><td>实际运行时间 / 计划运行时间</td><td>≥90%</td></tr>
+<tr><td>**性能开动率**</td><td>实际产出 / 理论产出</td><td>≥95%</td></tr>
+<tr><td>**合格品率**</td><td>合格品 / 总产出</td><td>≥99%</td></tr>
+<tr><td>**OEE**</td><td>时间×性能×合格品</td><td>≥85%</td></tr>
+</tbody></table>
+<br>
+<h3>4. 备件管理</h3>
+<br>
+<table>
+<thead><tr><th>备件分类</th><th>管理策略</th><th>示例</th></tr></thead>
+<tbody>
+<tr><td>**A类（关键）**</td><td>安全库存≥1个，紧急采购通道</td><td>AGV主控板、堆垛机变频器</td></tr>
+<tr><td>**B类（重要）**</td><td>按消耗率设定最低库存</td><td>驱动轮、传感器、碳刷</td></tr>
+<tr><td>**C类（常规）**</td><td>按需采购或JIT</td><td>螺栓、润滑油、滤芯</td></tr>
+</tbody></table>
+<br>
+<h3>5. 维护文档与记录</h3>
+<br>
+<table>
+<thead><tr><th>文档</th><th>内容</th><th>保存期限</th></tr></thead>
+<tbody>
+<tr><td>**设备台账**</td><td>设备清单、型号、编号、投运日期</td><td>永久</td></tr>
+<tr><td>**维护计划表**</td><td>年度/季度/月度维护计划</td><td>≥3年</td></tr>
+<tr><td>**日常点检表**</td><td>每日点检项目+签名</td><td>≥1年</td></tr>
+<tr><td>**维护记录**</td><td>每次维护内容、更换部件、工时</td><td>≥3年</td></tr>
+<tr><td>**故障维修记录**</td><td>故障描述、原因分析、处理措施</td><td>≥3年</td></tr>
+<tr><td>**备件更换记录**</td><td>更换日期、部件、原因</td><td>≥3年</td></tr>
+<tr><td>**特种设备检验报告**</td><td>法定检验报告</td><td>永久</td></tr>
+</tbody></table>
+<br>
+<h3>6. 设备维护关键KPI</h3>
+<br>
+<table>
+<thead><tr><th>KPI</th><th>计算方式</th><th>优秀基准</th></tr></thead>
+<tbody>
+<tr><td>**MTBF**（平均故障间隔）</td><td>总运行时间/故障次数</td><td>越长越好</td></tr>
+<tr><td>**MTTR**（平均修复时间）</td><td>总维修时间/维修次数</td><td>≤2小时</td></tr>
+<tr><td>**计划维护完成率**</td><td>完成项/计划项</td><td>≥95%</td></tr>
+<tr><td>**非计划停机率**</td><td>非计划停机/总运行时间</td><td><2%</td></tr>
+<tr><td>**设备完好率**</td><td>完好设备/总设备</td><td>≥98%</td></tr>
+<tr><td>**维护成本占比**</td><td>年维护费/设备原值</td><td>3-5%</td></tr>
+</tbody></table>
+<br>
+<h3>7. LOTO（上锁挂牌）安全程序</h3>
+<br>
+<p>设备维护时必须执行以下步骤：</p>
+<br>
+<pre><code>1. 准备 → 通知相关人员
+2. 停机 → 按正常程序停止设备
+3. 隔离 → 切断所有能源（电气/液压/气动/机械）
+4. 锁定 → 用个人锁锁定隔离点
+5. 挂牌 → 挂"正在维修，禁止操作"警示牌
+6. 验证 → 尝试启动确认已隔离
+7. 作业 → 进行维护操作
+8. 解锁 → 确认安全后解除锁定，恢复供能</code></pre>
+<br>
+<p>---</p>
+<br>
+<h2>五、关键数据速查卡</h2>
+<br>
+<table>
+<thead><tr><th>参数</th><th>数值</th></tr></thead>
+<tbody>
+<tr><td>AGV电池SOC最低部署值</td><td>>20%</td></tr>
+<tr><td>锂电池容量更换阈值</td><td><原始80%</td></tr>
+<tr><td>月检驱动轮直径偏差</td><td><2mm</td></tr>
+<tr><td>BMS电芯电压偏差告警</td><td>>50mV</td></tr>
+<tr><td>叉车法定检验周期</td><td>每年1次</td></tr>
+<tr><td>堆垛机钢丝绳更换标准</td><td>断丝>10%或直径减少>7%</td></tr>
+<tr><td>计划维护完成率目标</td><td>≥95%</td></tr>
+<tr><td>设备OEE目标</td><td>≥85%</td></tr>
+<tr><td>设备完好率目标</td><td>≥98%</td></tr>
+<tr><td>非计划停机率控制</td><td><2%</td></tr>
+<tr><td>维护成本占设备原值</td><td>3-5%</td></tr>
+</tbody></table>
+<br>
+</section>
+<section id="standards" class="content-section">
+<h1>体系标准与仓库管理审核要求</h1>
 <br>
 <p>本参考文档详细解读 IATF 16949、ISO 45001、ISO 27001、VDA 6.3 四大体系标准中与仓库/物流管理直接相关的审核要求。</p>
 <br>
@@ -1626,7 +2001,10 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 </tbody></table>
 <br>
 <p>> <strong>核心原则</strong>：所有体系中，仓库管理遵循 "<strong>标识清楚、存储合规、流转有序、可追溯、可防护、持续改进</strong>" 的共同底层逻辑。</p>
-<br></div></div><div id="panel-oem" class="detail-panel"><div class="detail-header"><button class="btn-back" onclick="goBack()">← 返回首页</button><h1>🚗 客户审核</h1></div><div class="detail-body"><h1>全球知名汽车客户审核要求 — 物流与仓储篇</h1>
+<br>
+</section>
+<section id="oem" class="content-section">
+<h1>全球知名汽车客户审核要求 — 物流与仓储篇</h1>
 <br>
 <p>本文档整理奔驰、宝马、大众、丰田、现代/起亚五大全球汽车客户的供应商审核体系中与物流仓储管理直接相关的要求。</p>
 <br>
@@ -1953,50 +2331,24 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <li>❌ <strong>PPT与实际两张皮</strong>：文件写的好，现场做不到</li>
 <br>
 <p>> <strong>黄金法则</strong>：客户审核不是考试，而是验证你是否<strong>说你所做、做你所说</strong>。现场的真实一致性比完美更重要。</p>
-<br></div></div>
-<div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()"><div class="search-results"><div class="search-results-header"><input type="text" id="searchOverlayInput" placeholder="输入关键词搜索..." onkeyup="performSearch()" autofocus><button onclick="closeSearch()">关闭</button></div><div id="searchResultsList"></div></div></div>
-<div class="footer"><p>仓储管理与自动化知识库 · 数据来源: CMR/IATF/VDA/Gartner/IPC · <a href="https://github.com/Kimi1108/warehouse-knowledge-base" target="_blank">GitHub</a></p></div>
-<script>
-var currentSection = null;
-var sectionData = {"home":{"title":"首页总览","icon":"🏠"},"automation":{"title":"仓储自动化","icon":"🤖"},"wms":{"title":"WMS选型","icon":"💻"},"best-practices":{"title":"最佳实践","icon":"📋"},"industry":{"title":"行业案例","icon":"🏭"},"electronic-safety":{"title":"电子料与安全","icon":"🔌"},"standards":{"title":"体系标准","icon":"📐"},"oem":{"title":"客户审核","icon":"🚗"}};
+<br>
+</section>
 
-function openSection(id,title,icon){
-  document.getElementById("home-view").style.display="none";
-  document.querySelectorAll(".detail-panel").forEach(function(p){p.classList.remove("active")});
-  var panel=document.getElementById("panel-"+id);
-  if(panel)panel.classList.add("active");
-  currentSection={id:id,title:title,icon:icon};
-  window.scrollTo(0,0);
-  history.pushState({section:id},title,"#"+id)
-}
-function goBack(){
-  document.querySelectorAll(".detail-panel").forEach(function(p){p.classList.remove("active")});
-  document.getElementById("home-view").style.display="block";
-  currentSection=null;window.scrollTo(0,0);history.pushState({},"","#")
-}
-function goHome(){goBack()}
-function openSearch(){document.getElementById("searchOverlay").classList.add("active");document.getElementById("searchOverlayInput").focus()}
-function closeSearch(){document.getElementById("searchOverlay").classList.remove("active")}
-function handleSearchClick(el){closeSearch();openSection(el.dataset.section,el.dataset.title,el.dataset.icon)}
-function performSearch(){
-  var q=document.getElementById("searchOverlayInput").value.toLowerCase().trim();
-  var c=document.getElementById("searchResultsList");
-  if(q.length<2){c.innerHTML="<div class=no-results>输入至少2个字符开始搜索</div>";return}
-  var results=[];
-  document.querySelectorAll(".detail-panel").forEach(function(p){
-    var id=p.id.replace("panel-",""),t=p.innerText,idx=t.toLowerCase().indexOf(q);
-    if(idx>=0){
-      var start=Math.max(0,idx-30),end=Math.min(t.length,idx+q.length+80);
-      var ex=(start>0?"...":"")+t.substring(start,end).replace(/\n/g," ")+(end<t.length?"...":"");
-      results.push({id:id,title:sectionData[id]?sectionData[id].title:id,icon:sectionData[id]?sectionData[id].icon:"",excerpt:ex})
-    }
-  });
-  if(results.length===0){c.innerHTML="<div class=no-results>未找到内容</div>"}
-  else{c.innerHTML=results.slice(0,15).map(function(r){return "<div class=search-result-item data-section="+r.id+" data-title="+r.title+" data-icon="+r.icon+" onclick=handleSearchClick(this)><h4>"+r.icon+" "+r.title+"</h4><p>"+r.excerpt+"</p></div>"}).join("")}
-}
-window.onpopstate=function(e){if(e.state&&e.state.section){var s=e.state.section;if(sectionData[s])openSection(s,sectionData[s].title,sectionData[s].icon)}else goHome()};
-window.addEventListener("load",function(){var h=window.location.hash.replace("#","");if(h&&sectionData[h])openSection(h,sectionData[h].title,sectionData[h].icon)});
-document.addEventListener("keydown",function(e){if(e.ctrlKey&&e.key==="k"){e.preventDefault();openSearch()}if(e.key==="Escape")closeSearch();if(e.ctrlKey&&e.key==="h"){e.preventDefault();goHome()}});
+  </main>
+</div>
+<script>
+function showSection(id) {{
+  document.querySelectorAll('.content-section').forEach(function(s) {{ s.classList.remove('active'); }});
+  document.querySelectorAll('.sidebar a').forEach(function(a) {{ a.classList.remove('active'); }});
+  document.getElementById(id).classList.add('active');
+  var link = document.querySelector('a[href="#' + id + '"]');
+  if (link) link.classList.add('active');
+  localStorage.setItem('warehouse-active-section', id);
+}}
+document.addEventListener('DOMContentLoaded', function() {{
+  var saved = localStorage.getItem('warehouse-active-section') || 'home';
+  showSection(saved);
+}});
 </script>
 </body>
 </html>
