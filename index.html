@@ -7,8 +7,6 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif; background: #f5f6fa; color: #2d3436; line-height: 1.7; }
-
-/* Top Bar */
 .topbar { position: sticky; top: 0; z-index: 1000; background: linear-gradient(135deg, #0c0c30, #1a1a4e); color: #fff; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 56px; box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
 .topbar .logo-area { display: flex; align-items: center; gap: 10px; cursor: pointer; }
 .topbar .logo-area span { font-size: 20px; font-weight: 700; }
@@ -19,35 +17,27 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helv
 .topbar .top-actions { display: flex; gap: 12px; }
 .topbar .top-actions a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; }
 .topbar .top-actions a:hover { background: rgba(255,255,255,0.1); color: #fff; }
-
-/* Home */
 .home-view { padding: 0; }
 .hero { background: linear-gradient(135deg, #0c0c30 0%, #1a1a4e 40%, #2d1b69 100%); color: #fff; padding: 60px 40px; text-align: center; position: relative; overflow: hidden; }
 .hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
 .hero h1 { font-size: 36px; margin-bottom: 12px; position: relative; }
-.hero p { font-size: 16px; opacity: 0.8; max-width: 600px; margin: 0 auto 24px; position: relative; }
+.hero p { font-size: 16px; opacity: 0.8; max-width: 700px; margin: 0 auto 24px; position: relative; }
 .hero .stats-row { display: flex; justify-content: center; gap: 40px; margin: 32px 0; position: relative; flex-wrap: wrap; }
 .hero .stat-item { text-align: center; }
 .hero .stat-item .num { font-size: 36px; font-weight: 800; background: linear-gradient(135deg, #a29bfe, #6c5ce7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .hero .stat-item .lbl { font-size: 13px; opacity: 0.6; }
-
-/* Cards Grid */
-.cards-container { max-width: 1200px; margin: -40px auto 40px; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 20px; position: relative; z-index: 10; }
+.cards-container { max-width: 1300px; margin: -40px auto 40px; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 20px; position: relative; z-index: 10; }
 .card { background: #fff; border-radius: 16px; padding: 28px; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
 .card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
 .card .card-icon { font-size: 40px; margin-bottom: 12px; }
 .card h3 { font-size: 19px; margin-bottom: 8px; color: #2d3436; }
 .card p { font-size: 14px; color: #636e72; line-height: 1.6; }
-
-/* Detail Panel */
 .detail-panel { display: none; max-width: 1100px; margin: 0 auto; padding: 24px; }
 .detail-panel.active { display: block; }
 .detail-header { margin-bottom: 24px; }
 .detail-header h1 { font-size: 26px; color: #1a1a4e; }
 .btn-back { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: #f0f0f5; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; color: #636e72; margin-bottom: 16px; transition: all 0.2s; }
 .btn-back:hover { background: #e0e0eb; color: #2d3436; }
-
-/* Detail body styles */
 .detail-body h1 { font-size: 28px; color: #0c0c30; margin-bottom: 16px; border-bottom: 3px solid #6c5ce7; padding-bottom: 10px; }
 .detail-body h2 { font-size: 22px; color: #1a1a4e; margin: 36px 0 12px; }
 .detail-body h3 { font-size: 17px; color: #444; margin: 24px 0 8px; }
@@ -62,8 +52,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helv
 .detail-body pre { background: #1a1a2e; color: #e0e0e0; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; font-size: 13px; }
 .detail-body pre code { background: none; color: inherit; padding: 0; }
 .detail-body strong { color: #6c5ce7; }
-
-/* Search overlay */
 .search-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; }
 .search-overlay.active { display: flex; }
 .search-results { background: #fff; width: 90%; max-width: 600px; max-height: 70vh; border-radius: 16px; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
@@ -76,46 +64,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helv
 .search-result-item h4 { font-size: 14px; color: #1a1a4e; }
 .search-result-item p { font-size: 12px; color: #888; margin-top: 2px; }
 .no-results { padding: 40px; text-align: center; color: #888; }
-
-/* Process flow diagram */
-.flow-diagram { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 24px 0; padding: 20px; background: #fff; border-radius: 12px; }
 .flow-step { padding: 14px 20px; background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: #fff; border-radius: 10px; font-size: 14px; font-weight: 600; text-align: center; }
-.flow-arrow { font-size: 20px; color: #6c5ce7; }
-.flow-step.warn { background: linear-gradient(135deg, #e17055, #fab1a0); }
-.flow-step.success { background: linear-gradient(135deg, #00b894, #55efc4); color: #1a1a2e; }
-
-/* Architecture diagram */
 .arch-diagram { margin: 24px 0; }
-.arch-layer { padding: 16px 20px; margin: 6px 0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 14px; }
 .arch-top { background: #dfe6e9; color: #636e72; border: 2px dashed #b2bec3; }
 .arch-mid { background: #6c5ce7; color: #fff; }
 .arch-bot { background: #e17055; color: #fff; }
 .arch-arrow-down { text-align: center; font-size: 20px; color: #b2bec3; margin: 4px 0; }
-
-/* Section illustration */
-.section-illustration { text-align: center; padding: 30px; background: #fff; border-radius: 16px; margin: 20px 0; }
-.section-illustration svg { max-width: 100%; height: auto; }
-
-/* Comparison highlight */
-.highlight-box { background: linear-gradient(135deg, #f8f9ff, #e8e5ff); border-left: 4px solid #6c5ce7; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 16px 0; }
-
-/* Mobile */
-@media (max-width: 768px) {
-  .hero { padding: 40px 20px; }
-  .hero h1 { font-size: 24px; }
-  .hero .stats-row { gap: 20px; }
-  .hero .stat-item .num { font-size: 24px; }
-  .cards-container { grid-template-columns: 1fr; padding: 0 16px; }
-  .detail-panel { padding: 16px; }
-  .topbar .search-area { display: none; }
-  .detail-body table { font-size: 12px; }
-}
-
-/* Footer */
 .footer { text-align: center; padding: 40px 20px; color: #b2bec3; font-size: 13px; }
 .footer a { color: #6c5ce7; }
-
-/* Animations */
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 .card { animation: fadeIn 0.5s ease both; }
 .card:nth-child(1) { animation-delay: 0.05s; }
@@ -124,11 +80,19 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helv
 .card:nth-child(4) { animation-delay: 0.20s; }
 .card:nth-child(5) { animation-delay: 0.25s; }
 .card:nth-child(6) { animation-delay: 0.30s; }
-
-/* Scrollbar */
+.card:nth-child(7) { animation-delay: 0.35s; }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #f0f0f0; }
 ::-webkit-scrollbar-thumb { background: #b2bec3; border-radius: 3px; }
+@media (max-width: 768px) {
+  .hero { padding: 40px 20px; }
+  .hero h1 { font-size: 24px; }
+  .hero .stats-row { gap: 20px; }
+  .hero .stat-item .num { font-size: 24px; }
+  .cards-container { grid-template-columns: 1fr; padding: 0 16px; }
+  .detail-panel { padding: 16px; }
+  .topbar .search-area { display: none; }
+}
 </style>
 </head>
 <body>
@@ -149,10 +113,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helv
 <div id="home-view" class="home-view active">
   <div class="hero">
     <h1>📦 仓库管理与仓储自动化</h1>
-    <p>一站式专业知识库，覆盖自动化技术、WMS选型、最佳实践、体系标准及全球汽车客户审核</p>
+    <p>一站式专业知识库 — 覆盖自动化技术、WMS选型、电子料管理、安全规范、体系标准及全球汽车客户审核</p>
     <div class="stats-row">
-      <div class="stat-item"><div class="num">7</div><div class="lbl">知识板块</div></div>
-      <div class="stat-item"><div class="num">6</div><div class="lbl">专业文档</div></div>
+      <div class="stat-item"><div class="num">8</div><div class="lbl">知识板块</div></div>
+      <div class="stat-item"><div class="num">7</div><div class="lbl">专业文档</div></div>
       <div class="stat-item"><div class="num">550亿+</div><div class="lbl">2026年市场规模</div></div>
       <div class="stat-item"><div class="num">38万+</div><div class="lbl">预计AMR出货</div></div>
     </div>
@@ -180,6 +144,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helv
       <h3>行业案例</h3>
       <p>电商/制造/医药/冷链/新能源/化工仓储方案</p>
     </div>
+    <div class="card" onclick="openSection('electronic-safety', '电子料与安全', '🔌')" style="border-top: 4px solid #00cec9">
+      <div class="card-icon">🔌</div>
+      <h3>电子料与安全</h3>
+      <p>MSD湿敏管理/ESD静电防护/危化品仓储安全</p>
+    </div>
     <div class="card" onclick="openSection('standards', '体系标准', '📐')" style="border-top: 4px solid #e84393">
       <div class="card-icon">📐</div>
       <h3>体系标准</h3>
@@ -194,8 +163,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helv
 
   <div class="section-illustration" style="max-width:1100px; margin:0 auto 40px; padding:0 24px;">
     <h2 style="text-align:center; margin-bottom:20px; color:#1a1a4e;">📐 智慧仓储三层架构</h2>
-    <div class="arch-diagram">
-      <div class="arch-top" style="font-size:18px;">🎯 感知层</div>
+    <div class="arch-diagram" style="text-align:center;">
+      <div class="arch-top" style="font-size:18px; padding:16px 20px; border-radius:10px;">🎯 感知层</div>
       <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin:10px 0;">
         <span class="flow-step" style="background:#b2bec3; font-size:12px; padding:8px 14px;">RFID</span>
         <span class="flow-step" style="background:#b2bec3; font-size:12px; padding:8px 14px;">条码/二维码</span>
@@ -204,7 +173,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helv
         <span class="flow-step" style="background:#b2bec3; font-size:12px; padding:8px 14px;">LiDAR</span>
       </div>
       <div class="arch-arrow-down">⬇</div>
-      <div class="arch-mid" style="font-size:18px;">🧠 决策层</div>
+      <div class="arch-mid" style="font-size:18px; padding:16px 20px; border-radius:10px;">🧠 决策层</div>
       <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin:10px 0;">
         <span class="flow-step" style="font-size:12px; padding:8px 14px;">WMS</span>
         <span class="flow-step" style="font-size:12px; padding:8px 14px;">WCS</span>
@@ -212,7 +181,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helv
         <span class="flow-step" style="font-size:12px; padding:8px 14px;">数字孪生</span>
       </div>
       <div class="arch-arrow-down">⬇</div>
-      <div class="arch-bot" style="font-size:18px;">⚡ 执行层</div>
+      <div class="arch-bot" style="font-size:18px; padding:16px 20px; border-radius:10px;">⚡ 执行层</div>
       <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin:10px 0;">
         <span class="flow-step" style="background:#e17055; font-size:12px; padding:8px 14px;">AGV/AMR</span>
         <span class="flow-step" style="background:#e17055; font-size:12px; padding:8px 14px;">堆垛机</span>
@@ -1034,6 +1003,136 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 <br>
   </div>
 </div>
+<div id="panel-electronic-safety" class="detail-panel">
+  <div class="detail-header">
+    <button class="btn-back" onclick="goBack()">← 返回首页</button>
+    <h1>🔌 电子料与安全</h1>
+  </div>
+  <div class="detail-body">
+    <h1>电子料管理、仓库安全与危化品存储</h1>
+<br>
+<p>本参考文档涵盖三大专业领域：湿敏元件（MSD）管理、ESD静电防护、危险化学品仓储安全。</p>
+<br>
+<br>
+<h2>二、ESD 静电防护</h2>
+<br>
+<h3>1. 什么是 ESD</h3>
+<br>
+<p>ESD（Electrostatic Discharge，静电放电）是指两个带不同静电电位的物体之间发生的电荷转移。人体可感知的静电电压约2000V，而IC器件在<strong>50-100V</strong>就可能损坏——很多静电损伤是"看不见的杀手"。</p>
+<br>
+<h3>2. 核心标准</h3>
+<br>
+<table>
+<thead><tr><th>标准</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>**ANSI/ESD S20.20**</td><td>静电放电控制方案国际标准（2021版为最新）</td></tr>
+<tr><td>**IEC 61340-5-1**</td><td>国际电工委员会ESD防护标准</td></tr>
+<tr><td>**IPC/JEDEC J-STD-033**</td><td>湿敏+ESD联合管控</td></tr>
+</tbody></table>
+<br>
+<h3>3. EPA 防静电工作区</h3>
+<br>
+<p><strong>EPA（ESD Protected Area）</strong> 是专门控制静电的防护区域，核心要求：</p>
+<br>
+<table>
+<thead><tr><th>要素</th><th>要求</th></tr></thead>
+<tbody>
+<tr><td>**接地系统**</td><td>所有导电表面（工作台、货架、设备）必须连接到公共接地点</td></tr>
+<tr><td>**防静电地板**</td><td>表面电阻 10⁴-10⁹ Ω</td></tr>
+<tr><td>**防静电台垫**</td><td>表面电阻 10⁴-10⁹ Ω，通过1MΩ电阻接地</td></tr>
+<tr><td>**人员接地**</td><td>腕带（1MΩ电阻接地）或防静电鞋+导电地板</td></tr>
+<tr><td>**空气电离器**</td><td>中和非导电材料上的静电荷</td></tr>
+<tr><td>**警示标识**</td><td>EPA区域入口必须张贴ESD警示标志</td></tr>
+<tr><td>**非ESD物品禁入**</td><td>普通塑料袋、泡沫、胶带等严禁进入EPA</td></tr>
+</tbody></table>
+<br>
+<h3>4. 防静电包装（法拉第笼原理）</h3>
+<br>
+<p>> <strong>法拉第笼</strong>：封闭的导电壳体，外部电场无法穿透——防静电屏蔽袋基于此原理。</p>
+<br>
+<table>
+<thead><tr><th>包装类型</th><th>用途</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>**防静电屏蔽袋**（金属化）</td><td>长期存储、运输</td><td>法拉第笼效应，内外都防静电</td></tr>
+<tr><td>**防静电袋**（粉色/黑色）</td><td>短期周转</td><td>仅防摩擦起电，无屏蔽功能</td></tr>
+<tr><td>**防静电托盘/料盒**</td><td>器件周转存储</td><td>导电材料，表面电阻≤10⁴ Ω</td></tr>
+<tr><td>**防静电卷带/IC管**</td><td>贴片器件包装</td><td>原厂标准包装</td></tr>
+</tbody></table>
+<br>
+<h3>5. ESD 物料存储要求</h3>
+<br>
+<table>
+<thead><tr><th>场景</th><th>要求</th></tr></thead>
+<tbody>
+<tr><td>**EPA内存储**</td><td>防静电货架+防静电料盒+接地，温湿度可控</td></tr>
+<tr><td>**EPA外存储**</td><td>必须使用**防静电屏蔽袋**密封+外层防潮袋</td></tr>
+<tr><td>**货架**</td><td>所有货架必须接地，定期检测接地电阻</td></tr>
+<tr><td>**散料盘点**</td><td>必须在防静电台垫上进行，操作员戴腕带</td></tr>
+<tr><td>**湿度控制**</td><td>相对湿度**40-60%RH**（过低湿度加剧静电）</td></tr>
+<tr><td>**原包装**</td><td>保持原厂防静电包装，严禁随意拆封</td></tr>
+</tbody></table>
+<br>
+<h3>6. ESD 敏感度分类</h3>
+<br>
+<table>
+<thead><tr><th>类别</th><th>敏感电压</th><th>典型器件</th></tr></thead>
+<tbody>
+<tr><td>Class 0</td><td><50V</td><td>高频RF器件、MEMS传感器</td></tr>
+<tr><td>Class 1</td><td>50-250V</td><td>先进制程MCU、FPGA</td></tr>
+<tr><td>Class 2</td><td>250-2000V</td><td>通用IC、MOSFET</td></tr>
+<tr><td>Class 3</td><td>2000-8000V</td><td>功率器件、二/三极管</td></tr>
+</tbody></table>
+<br>
+<h3>7. ESD 审核常见问题</h3>
+<br>
+<pre><code>- "货架的接地电阻最近一次测量是什么时候？"
+- "员工的防静电腕带每天检测记录在哪？"
+- "EPA区域入口是否有测试台？员工是否每日自检？"
+- "这个防静电袋是全封闭的吗？有没有破洞？"
+- "包装上是否有 ESD 警示标识？"</code></pre>
+<br>
+<br>
+<h2>四、仓库综合安全检查清单</h2>
+<br>
+<h3>消防安全</h3>
+<br>
+<table>
+<thead><tr><th>检查项</th><th>标准</th></tr></thead>
+<tbody>
+<tr><td>灭火器</td><td>每月检查压力表，每年年检，放置位置无遮挡</td></tr>
+<tr><td>消防通道</td><td>保持畅通，宽度≥1.2m，标识清晰</td></tr>
+<tr><td>疏散指示灯</td><td>每月测试，应急照明≥30分钟</td></tr>
+<tr><td>烟感/温感</td><td>每季度测试，覆盖全部区域</td></tr>
+<tr><td>消防演练</td><td>每半年至少一次，有记录</td></tr>
+<tr><td>动火作业</td><td>必须办理动火审批，现场配备灭火器</td></tr>
+</tbody></table>
+<br>
+<h3>仓储作业安全</h3>
+<br>
+<table>
+<thead><tr><th>检查项</th><th>标准</th></tr></thead>
+<tbody>
+<tr><td>叉车</td><td>操作员持证上岗，每日点检，限速5km/h</td></tr>
+<tr><td>货架</td><td>每季度检查变形/倾斜，承重标识清晰</td></tr>
+<tr><td>堆垛</td><td>不超高、不超重、不倾斜</td></tr>
+<tr><td>人车分流</td><td>行人通道与车辆通道物理隔离</td></tr>
+<tr><td>登高作业</td><td>超过1.8m使用安全带，梯子定期检查</td></tr>
+<tr><td>照明</td><td>作业区≥200Lux，仓库通道≥100Lux</td></tr>
+</tbody></table>
+<br>
+<h3>人员安全</h3>
+<br>
+<table>
+<thead><tr><th>检查项</th><th>标准</th></tr></thead>
+<tbody>
+<tr><td>PPE</td><td>安全鞋、反光背心、手套（按岗位配发）</td></tr>
+<tr><td>安全培训</td><td>新员工三级安全教育+年度复训</td></tr>
+<tr><td>应急预案</td><td>全员知晓疏散路线、集合点</td></tr>
+<tr><td>工伤记录</td><td>及时报告+调查+整改</td></tr>
+</tbody></table>
+<br>
+  </div>
+</div>
 <div id="panel-standards" class="detail-panel">
   <div class="detail-header">
     <button class="btn-back" onclick="goBack()">← 返回首页</button>
@@ -1430,7 +1529,6 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
   </div>
 </div>
 
-<!-- Search Overlay -->
 <div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
   <div class="search-results">
     <div class="search-results-header">
@@ -1442,42 +1540,40 @@ PLC/设备层 → 传感器/执行器/机器人</code></pre>
 </div>
 
 <div class="footer">
-  <p>仓储管理与自动化知识库 · 数据来源: CMR/IATF/VDA/Gartner · <a href="https://github.com/Kimi1108/warehouse-knowledge-base" target="_blank">GitHub</a></p>
+  <p>仓储管理与自动化知识库 · 数据来源: CMR/IATF/VDA/Gartner/IPC · <a href="https://github.com/Kimi1108/warehouse-knowledge-base" target="_blank">GitHub</a></p>
 </div>
 
 <script>
 var currentSection = null;
-var sectionData = {"home": {"title": "首页总览", "icon": "🏠"}, "automation": {"title": "仓储自动化", "icon": "🤖"}, "wms": {"title": "WMS选型", "icon": "💻"}, "best-practices": {"title": "最佳实践", "icon": "📋"}, "industry": {"title": "行业案例", "icon": "🏭"}, "standards": {"title": "体系标准", "icon": "📐"}, "oem": {"title": "客户审核", "icon": "🚗"}}
+var sectionData = {"home": {"title": "首页总览", "icon": "🏠"}, "automation": {"title": "仓储自动化", "icon": "🤖"}, "wms": {"title": "WMS选型", "icon": "💻"}, "best-practices": {"title": "最佳实践", "icon": "📋"}, "industry": {"title": "行业案例", "icon": "🏭"}, "electronic-safety": {"title": "电子料与安全", "icon": "🔌"}, "standards": {"title": "体系标准", "icon": "📐"}, "oem": {"title": "客户审核", "icon": "🚗"}};
 
 function openSection(id, title, icon) {
-  document.getElementById('home-view').style.display = 'none';
-  document.querySelectorAll('.detail-panel').forEach(function(p) { p.classList.remove('active'); });
-  var panel = document.getElementById('panel-' + id);
-  if (panel) { panel.classList.add('active'); }
+  document.getElementById("home-view").style.display = "none";
+  document.querySelectorAll(".detail-panel").forEach(function(p) { p.classList.remove("active"); });
+  var panel = document.getElementById("panel-" + id);
+  if (panel) { panel.classList.add("active"); }
   currentSection = {id: id, title: title, icon: icon};
   window.scrollTo(0, 0);
-  history.pushState({section: id}, title, '#' + id);
+  history.pushState({section: id}, title, "#" + id);
 }
 
 function goBack() {
-  document.querySelectorAll('.detail-panel').forEach(function(p) { p.classList.remove('active'); });
-  document.getElementById('home-view').style.display = 'block';
+  document.querySelectorAll(".detail-panel").forEach(function(p) { p.classList.remove("active"); });
+  document.getElementById("home-view").style.display = "block";
   currentSection = null;
   window.scrollTo(0, 0);
-  history.pushState({}, '', '#');
+  history.pushState({}, "", "#");
 }
 
-function goHome() {
-  goBack();
-}
+function goHome() { goBack(); }
 
 function openSearch() {
-  document.getElementById('searchOverlay').classList.add('active');
-  document.getElementById('searchOverlayInput').focus();
+  document.getElementById("searchOverlay").classList.add("active");
+  document.getElementById("searchOverlayInput").focus();
 }
 
 function closeSearch() {
-  document.getElementById('searchOverlay').classList.remove('active');
+  document.getElementById("searchOverlay").classList.remove("active");
 }
 
 function handleSearchClick(el) {
@@ -1486,62 +1582,49 @@ function handleSearchClick(el) {
 }
 
 function performSearch() {
-  var q = document.getElementById('searchOverlayInput').value.toLowerCase().trim();
-  var container = document.getElementById('searchResultsList');
-  if (q.length < 2) { container.innerHTML = '<div class="no-results">输入至少2个字符开始搜索</div>'; return; }
-
+  var q = document.getElementById("searchOverlayInput").value.toLowerCase().trim();
+  var container = document.getElementById("searchResultsList");
+  if (q.length < 2) { container.innerHTML = "<div class=no-results>输入至少2个字符开始搜索</div>"; return; }
   var results = [];
-  document.querySelectorAll('.detail-panel').forEach(function(panel) {
-    var id = panel.id.replace('panel-', '');
+  document.querySelectorAll(".detail-panel").forEach(function(panel) {
+    var id = panel.id.replace("panel-", "");
     var text = panel.innerText;
     var idx = text.toLowerCase().indexOf(q);
     if (idx >= 0) {
       var start = Math.max(0, idx - 30);
       var end = Math.min(text.length, idx + q.length + 80);
-      var excerpt = (start > 0 ? '...' : '') + text.substring(start, end).replace(/\n/g, ' ') + (end < text.length ? '...' : '');
-      results.push({id: id, title: sectionData[id] ? sectionData[id].title : id, icon: sectionData[id] ? sectionData[id].icon : '', excerpt: excerpt});
+      var excerpt = (start > 0 ? "..." : "") + text.substring(start, end).replace(/\n/g, " ") + (end < text.length ? "..." : "");
+      results.push({id: id, title: sectionData[id] ? sectionData[id].title : id, icon: sectionData[id] ? sectionData[id].icon : "", excerpt: excerpt});
     }
   });
-
   if (results.length === 0) {
-    container.innerHTML = '<div class="no-results">未找到与 "' + q + '" 相关的内容</div>';
+    container.innerHTML = "<div class=no-results>未找到内容</div>";
   } else {
     container.innerHTML = results.slice(0, 15).map(function(r) {
-      return '<div class="search-result-item" data-section="' + r.id + '" data-title="' + r.title + '" data-icon="' + r.icon + '" onclick="handleSearchClick(this)">' +
-        '<h4>' + r.icon + ' ' + r.title + '</h4>' +
-        '<p>' + r.excerpt + '</p></div>';
-    }).join('');
+      return "<div class=search-result-item data-section=" + r.id + " data-title=" + r.title + " data-icon=" + r.icon + " onclick=handleSearchClick(this)>" +
+        "<h4>" + r.icon + " " + r.title + "</h4><p>" + r.excerpt + "</p></div>";
+    }).join("");
   }
 }
 
 window.onpopstate = function(e) {
   if (e.state && e.state.section) {
     var s = e.state.section;
-    openSection(s, sectionData[s].title, sectionData[s].icon);
-  } else {
-    goHome();
-  }
+    if (sectionData[s]) openSection(s, sectionData[s].title, sectionData[s].icon);
+  } else { goHome(); }
 };
 
-window.addEventListener('load', function() {
-  var hash = window.location.hash.replace('#', '');
+window.addEventListener("load", function() {
+  var hash = window.location.hash.replace("#", "");
   if (hash && sectionData[hash]) {
     openSection(hash, sectionData[hash].title, sectionData[hash].icon);
   }
 });
 
-document.addEventListener('keydown', function(e) {
-  if (e.ctrlKey && e.key === 'k') {
-    e.preventDefault();
-    openSearch();
-  }
-  if (e.key === 'Escape') {
-    closeSearch();
-  }
-  if (e.ctrlKey && e.key === 'h') {
-    e.preventDefault();
-    goHome();
-  }
+document.addEventListener("keydown", function(e) {
+  if (e.ctrlKey && e.key === "k") { e.preventDefault(); openSearch(); }
+  if (e.key === "Escape") { closeSearch(); }
+  if (e.ctrlKey && e.key === "h") { e.preventDefault(); goHome(); }
 });
 </script>
 </body>
